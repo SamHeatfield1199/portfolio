@@ -1,11 +1,15 @@
 import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: "500px",
-    height: "700px",
+    width: "550px",
+    height: "750px",
     borderRadius: "12px",
+    [theme.breakpoints.down("xs")]: {
+        width: "90vw",
+    height: "53em",
+    },
   },
   cardContent: {
     marginTop: "30px",
@@ -21,6 +25,8 @@ const useStyles = makeStyles(() => ({
     fontWeight: "600",
     gap: "1em",
     fontSize: "24px",
+    flexWrap: "wrap",
+    justifyContent: "center"
   },
   buttons: {
     marginTop: "20px",
@@ -90,6 +96,7 @@ const Project = ({ project }) => {
               fontSize: "36px",
               fontWeight: "600",
               fontFamily: "Montserrat",
+              textAlign: "center"
             }}
           >
             {project.title}
@@ -101,6 +108,7 @@ const Project = ({ project }) => {
               paddingLeft: "45px",
               paddingRight: "45px",
               opacity: "0.7",
+              textAlign: "center"
             }}
           >
             {project.desc}

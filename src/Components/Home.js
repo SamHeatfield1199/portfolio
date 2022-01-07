@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     overflow: "hidden",
-    marginLeft: "10em",
     height: "100vh",
 
   },
@@ -19,8 +18,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     justifyContent: "center",
     gap: "14px",
+    paddingTop: "5em",
+    paddingLeft: "5em",
     [theme.breakpoints.down("xs")]: {
       alignItems: "center",
+      textAlign:  "center",
+      paddingLeft: "0",
     },
   },
   button: {
@@ -48,11 +51,10 @@ const Home = () => {
       <div className={classes.wrapper}>
       <Typography
         variant="h2"
+        className={classes.title}
         style={{
-          fontSize: "64px",
           color: "#EEE6FF",
           fontFamily: "Montserrat",
-          lineHeight: "78px",
         }}
       >
         Смирнова Анастасия
@@ -60,10 +62,10 @@ const Home = () => {
       <Typography
         variant="h3"
         style={{
-          fontSize: "48px",
+        
           color: "#4C3F91",
           fontFamily: "Montserrat",
-          lineHeight: "59px",
+       
         }}
       >
         Frontend developer

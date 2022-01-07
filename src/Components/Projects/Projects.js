@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: "flex",
     flexDirection: "column",
-    textAlign: "left",
+
     justifyContent: "center",
   },
   projects: {
@@ -37,22 +37,26 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     gap: "13px",
   },
+  title: {
+    fontSize: "48px",
+    color: "#EEE6FF",
+    fontFamily: "Montserrat",
+    lineHeight: "59px",
+    textAlign: "left",
+    paddingLeft: "2.5em",
+
+    [theme.breakpoints.down("xs")]: {
+      textAlign: "center",
+      paddingLeft: "0",
+    },
+  },
 }));
 
 const Projects = () => {
   const classes = useStyles();
   return (
     <main className={classes.content}>
-      <Typography
-        variant="h2"
-        style={{
-          paddingLeft: "3em",
-          fontSize: "48px",
-          color: "#EEE6FF",
-          fontFamily: "Montserrat",
-          lineHeight: "59px",
-        }}
-      >
+      <Typography variant="h2" className={classes.title}>
         <span
           style={{
             color: "#B958A5",

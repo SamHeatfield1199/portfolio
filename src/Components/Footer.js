@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     background: "rgba(76, 63, 145, 0.5)",
     marginTop: "103px",
     paddingTop: "60px",
+    
   },
 
   navlinks: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "44px",
     marginLeft: "3em",
     color: "#FFFFFF",
+ 
   },
   link: {
     fontFamily: "Montserrat",
@@ -41,8 +43,6 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #B958A5",
     borderRadius: "6px",
     padding: " 0.3em 0.7em",
-    marginLeft: "1.5em",
-    marginRight: "3em",
     fontFamily: "Montserrat",
     textDecoration: "none",
     color: "white",
@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       transitionDuration: "0.5s",
       backgroundColor: " #B958A5",
+    },
+    [theme.breakpoints.down("md")]: {
+      display: "none",
     },
   },
 }));

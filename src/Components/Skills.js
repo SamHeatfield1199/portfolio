@@ -8,11 +8,10 @@ import js from "./data/img/skills/js.png";
 import react from "./data/img/skills/react.png";
 import git from "./data/img/skills/git.png";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   cardGrid: {
     maxWidth: "1024px",
     margin: "40px auto",
-
     display: "flex",
     flexWrap: "wrap",
     gap: "3.5rem",
@@ -48,22 +47,27 @@ const useStyles = makeStyles(() => ({
     lineHeight: "29px",
     color: "#4C3F91",
   },
+  title: {
+    fontSize: "48px",
+    color: "#EEE6FF",
+    fontFamily: "Montserrat",
+    lineHeight: "59px",
+    marginBottom: "102px",
+
+    textAlign: "left",
+    paddingLeft: "2.5em",
+
+    [theme.breakpoints.down("xs")]: {
+      textAlign: "center",
+      paddingLeft: "0",
+    },
+  },
 }));
 const Skills = () => {
   const classes = useStyles();
-  return ( 
+  return (
     <div className={classes.cards}>
-      <Typography
-        variant="h2"
-        style={{
-          paddingLeft: "3em",
-          fontSize: "48px",
-          color: "#EEE6FF",
-          fontFamily: "Montserrat",
-          lineHeight: "59px",
-          marginBottom: "102px",
-        }}
-      >
+      <Typography variant="h2" className={classes.title}>
         <span
           style={{
             color: "#B958A5",

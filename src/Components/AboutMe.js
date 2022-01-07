@@ -6,25 +6,24 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Montserrat",
     fontSize: "36px",
     lineHeight: "44px",
-
     color: "#FFFFFF",
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
     paddingLeft: "3em",
-    textAlign: "left",
+    [theme.breakpoints.down("xs")]: {
+      alignItems: "center",
+      paddingLeft: "0",
+      paddingRight: "1em",
+      textAlign: "center"
+    },
   },
   desc: {
-    paddingLeft: "2.2em",
     maxWidth: "1500px",
     marginTop: "75px",
     display: "flex",
     flexDirection: "column",
     gap: "42px",
-    [theme.breakpoints.down("xs")]: {
-      paddingLeft: "0",
-      alignItems: "center",
-    },
+
   },
   study: {
     display: "flex",
@@ -65,15 +64,32 @@ const About = () => {
         Обо мне
       </Typography>
       <div className={classes.desc}>
-        <p>
+        <Typography
+          variant="h4"
+          style={{
+            fontFamily: "Montserrat",
+          }}
+        >
           Начинающий фронтенд разработчик, влюбленный в своё дело. Моя цель -
           создание качественных, адаптивных, кроссбраузерных веб-сервисов.
-        </p>
+        </Typography>
         <div className={classes.study}>
           <p>
-            <span style={{ borderBottom: " 3px solid #B958A5",  paddingBottom: "7px" }}>Обучение</span>
+            <span
+              style={{
+                borderBottom: " 3px solid #B958A5",
+                paddingBottom: "7px",
+              }}
+            >
+              Обучение
+            </span>
           </p>
-          <span>
+          <Typography
+            variant="h4"
+            style={{
+              fontFamily: "Montserrat",
+            }}
+          >
             Курс{" "}
             <a
               className={classes.link}
@@ -84,8 +100,13 @@ const About = () => {
               “Web Design for Everybody: Basics of Web Development &amp; Coding”
             </a>{" "}
             by Coursera. 2020
-          </span>
-          <span>
+          </Typography>
+          <Typography
+            variant="h4"
+            style={{
+              fontFamily: "Montserrat",
+            }}
+          >
             Курс{" "}
             <a
               className={classes.link}
@@ -96,11 +117,16 @@ const About = () => {
               “Responsive Web Design”
             </a>{" "}
             by freecodecamp. 2021
-          </span>
-          <span>
+          </Typography>
+          <Typography
+            variant="h4"
+            style={{
+              fontFamily: "Montserrat",
+            }}
+          >
             Специалитет “Компьютерная безопасность” Дальневосточный Федеральный
             Университет. 2017-2023
-          </span>
+          </Typography>
         </div>
       </div>
     </div>

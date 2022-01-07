@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     flexGrow: "1",
-    marginLeft: "5em",
+    paddingLeft: "5em",
   },
   link: {
     fontFamily: "Montserrat",
