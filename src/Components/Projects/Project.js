@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
     height: "750px",
     borderRadius: "12px",
     [theme.breakpoints.down("xs")]: {
-        width: "90vw",
-    height: "53em",
+      width: "90vw",
+      height: "53em",
     },
   },
   cardContent: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     gap: "1em",
     fontSize: "24px",
     flexWrap: "wrap",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   buttons: {
     marginTop: "20px",
@@ -96,7 +96,7 @@ const Project = ({ project }) => {
               fontSize: "36px",
               fontWeight: "600",
               fontFamily: "Montserrat",
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             {project.title}
@@ -108,7 +108,8 @@ const Project = ({ project }) => {
               paddingLeft: "45px",
               paddingRight: "45px",
               opacity: "0.7",
-              textAlign: "center"
+              textAlign: "center",
+              
             }}
           >
             {project.desc}

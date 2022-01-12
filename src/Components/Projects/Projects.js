@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Montserrat",
     lineHeight: "59px",
     textAlign: "left",
-    paddingLeft: "2.5em",
+    paddingLeft: "3em",
 
     [theme.breakpoints.down("xs")]: {
       textAlign: "center",

@@ -82,7 +82,7 @@ function DrawerComponent() {
           <ListItem onClick={() => setOpenDrawer(false)}>
         
               <a className={classes.resumeButton}
-                href="https://drive.google.com/file/d/1IzOoFXANkCHT7csl7zy_X7S-zKRMP70I/view?usp=sharing"
+                href="https://drive.google.com/file/d/1pLWolp0PgRW4krv8UJ-CM_a78H4-7k8w/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 

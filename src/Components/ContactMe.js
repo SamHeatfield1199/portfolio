@@ -1,10 +1,7 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import arrow from "./data/img/arrow.png";
-import CallMadeIcon from "@material-ui/icons/CallMade";
 const useStyles = makeStyles((theme) => ({
   container: {
-    fontFamily: "Montserrat",
     fontSize: "36px",
     lineHeight: "44px",
     marginTop: "75px",
@@ -12,14 +9,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
-    paddingLeft: "3em",
+    paddingLeft: "4em",
     textAlign: "left",
     [theme.breakpoints.down("xs")]: {
-      alignItems: "center",
-      paddingLeft: "0",
-      paddingRight: "1em"
+      paddingLeft: "1em",
     },
+  
   },
+
   send: {
     display: "flex",
     borderBottom: " 1px solid white",
@@ -32,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     gap: "1em",
     marginTop: "70px",
-    [theme.breakpoints.down("md")]: {
-      paddingRight: "1em"
+    [theme.breakpoints.down("xs")]: {
+      paddingRight: "0.5em",
     },
   },
   arrow: {
@@ -78,7 +75,7 @@ const ContactMe = () => {
         </span>
         Контакты
       </Typography>
-      <div style={{ paddingLeft: "2em" }}>
+      <div >
         <p style={{ maxWidth: "710px" }}>
           Свяжитесь со мной любым удобным для вас способом:{" "}
         </p>

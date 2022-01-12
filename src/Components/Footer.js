@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontSize: "24px",
     transitionDuration: "0.5s",
+    marginRight: "3em",
     "&:hover": {
       transitionDuration: "0.5s",
       backgroundColor: " #B958A5",

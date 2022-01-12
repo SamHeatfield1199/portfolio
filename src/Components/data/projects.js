@@ -2,6 +2,7 @@ import img1 from "./img/crypto-atlas.png";
 import img2 from "./img/dict.png";
 import img3 from "./img/memory-card.png";
 import img4 from "./img/e-commerce.png";
+import img5 from "./img/todo.png";
 export const projects = [
   {
     id: 1,
@@ -38,5 +39,14 @@ export const projects = [
     stack: ["ReactJS", "Material UI"],
     urlDemo: "",
     urlRepo: "https://github.com/SamHeatfield1199/e-commerce",
+  },
+  {
+    id: 5,
+    img: img5,
+    title: "To-do List",
+    desc: "Simple but pretty draggable to-do list",
+    stack: ["ReactJS"],
+    urlDemo: "https://to-do-draggable-list.herokuapp.com/",
+    urlRepo: "https://github.com/SamHeatfield1199/to-do_list",
   },
 ];

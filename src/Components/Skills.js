@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "102px",
 
     textAlign: "left",
-    paddingLeft: "2.5em",
+    paddingLeft: "3em",
 
     [theme.breakpoints.down("xs")]: {
       textAlign: "center",
@@ -89,7 +89,7 @@ const Skills = () => {
         </div>
         <div className={classes.el1}>
           <img className={classes.img} src={js} alt="js" />
-          <span className={classes.span}>JS/ES6</span>
+          <span className={classes.span}>JavaScript</span>
         </div>
         <div className={classes.el1}>
           <img className={classes.img} src={sass} alt="sass" />

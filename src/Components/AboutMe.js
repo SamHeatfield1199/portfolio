@@ -9,12 +9,12 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
     display: "flex",
     flexDirection: "column",
-    paddingLeft: "3em",
+    paddingLeft: "4em",
     [theme.breakpoints.down("xs")]: {
-      alignItems: "center",
-      paddingLeft: "0",
+    
+      paddingLeft: "1em",
+
       paddingRight: "1em",
-      textAlign: "center"
     },
   },
   desc: {
@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: "42px",
-
   },
   study: {
     display: "flex",

@@ -1,16 +1,14 @@
 import { Button, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import "./style.css"
-
+import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     overflow: "hidden",
     height: "100vh",
-
   },
-  wrapper:{
+  wrapper: {
     display: "flex",
     maxWidth: "803px",
     flexDirection: "column",
@@ -19,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     gap: "14px",
     paddingTop: "5em",
-    paddingLeft: "5em",
+    paddingLeft: "10em",
     [theme.breakpoints.down("xs")]: {
       alignItems: "center",
-      textAlign:  "center",
+      textAlign: "center",
       paddingLeft: "0",
     },
   },
@@ -36,9 +34,7 @@ const useStyles = makeStyles((theme) => ({
       transitionDuration: "0.5s",
       background: "#B958A5",
     },
-
   },
-
 }));
 
 const Home = () => {
@@ -49,52 +45,50 @@ const Home = () => {
       <div id="stars2"></div>
       <div id="stars3"></div>
       <div className={classes.wrapper}>
-      <Typography
-        variant="h2"
-        className={classes.title}
-        style={{
-          color: "#EEE6FF",
-          fontFamily: "Montserrat",
-        }}
-      >
-        Смирнова Анастасия
-      </Typography>
-      <Typography
-        variant="h3"
-        style={{
-        
-          color: "#4C3F91",
-          fontFamily: "Montserrat",
-       
-        }}
-      >
-        Frontend developer
-      </Typography>
-      <p
-        style={{
-          fontSize: "27px",
-          color: "#FFFFFF",
-          fontFamily: "Montserrat",
-          lineHeight: "33px",
-        }}
-      >
-        &lt;The only time you should ever look back, is to see how far you've
-        come /&gt;
-      </p>
+        <Typography
+          variant="h2"
+          className={classes.title}
+          style={{
+            color: "#EEE6FF",
+            fontFamily: "Montserrat",
+          }}
+        >
+          Смирнова Анастасия
+        </Typography>
+        <Typography
+          variant="h3"
+          style={{
+            color: "#4C3F91",
+            fontFamily: "Montserrat",
+          }}
+        >
+          Frontend developer
+        </Typography>
+        <p
+          style={{
+            fontSize: "27px",
+            color: "#FFFFFF",
+            fontFamily: "Montserrat",
+            lineHeight: "33px",
+          }}
+        >
+          &lt;The only time you should ever look back, is to see how far you've
+          come /&gt;
+        </p>
 
-      <a
-        href="#contact"
-        className={classes.button}
-        style={{
-          fontSize: "24px",
-          color: "#FFFFFF",
-          fontFamily: "Montserrat",
-          lineHeight: "29px",
-          textDecoration: "none",
-        }}
-      >
-        Связаться со мной
-      </a>
+        <a
+          href="#contact"
+          className={classes.button}
+          style={{
+            fontSize: "24px",
+            color: "#FFFFFF",
+            fontFamily: "Montserrat",
+            lineHeight: "29px",
+            textDecoration: "none",
+          }}
+        >
+          Связаться со мной
+        </a>
       </div>
     </div>
   );
