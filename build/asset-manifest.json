@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c10c7751.css",
+    "main.js": "/static/js/main.30508c74.js",
+    "static/media/e-commerce.png": "/static/media/e-commerce.631aa32a33483bc7cf24.png",
+    "static/media/crypto-atlas.png": "/static/media/crypto-atlas.1d8a7a115bf60c107e24.png",
+    "static/media/memory-card.png": "/static/media/memory-card.7d01b566cdb86151a4fa.png",
+    "static/media/dict.png": "/static/media/dict.d619f777720b53757578.png",
+    "static/media/todo.png": "/static/media/todo.a2cc0f264a9aea209d33.png",
+    "static/media/react.png": "/static/media/react.dceaa1723fa4b0f19ff5.png",
+    "static/media/git.png": "/static/media/git.0d190006bbd50b0681b5.png",
+    "static/media/sass.png": "/static/media/sass.2b5a3b5a2875171a9f21.png",
+    "static/media/css.png": "/static/media/css.e31e30fbd381c3f058df.png",
+    "static/media/html.png": "/static/media/html.5139eb66b02855a1c137.png",
+    "static/media/js.png": "/static/media/js.60dbbe1569571db1eda7.png",
+    "index.html": "/index.html",
+    "main.c10c7751.css.map": "/static/css/main.c10c7751.css.map",
+    "main.30508c74.js.map": "/static/js/main.30508c74.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c10c7751.css",
+    "static/js/main.30508c74.js"
+  ]
+}
