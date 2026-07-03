@@ -4,9 +4,19 @@
     color: $color-primary;
     display: flex;
     justify-content: space-between;
-    padding: 23px 18px;
+    align-items: center;
+    height: 70px;
+    padding: 0 18px;
     font-weight: 800;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(6px);
     border-bottom: 1px solid #E1DAC9;
+    box-shadow: 0 4px 20px rgba(32,29,68,0.04);
 
     &__logo {
         font-size: 16px;
