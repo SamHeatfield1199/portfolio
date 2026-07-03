@@ -1,0 +1,30 @@
+@use "@styles/variables" as *;
+
+.header {
+    color: $color-primary;
+    display: flex;
+    justify-content: space-between;
+    padding: 23px 18px;
+    font-weight: 800;
+    border-bottom: 1px solid #E1DAC9;
+
+    &__logo {
+        font-size: 16px;
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-size: 14px;
+
+        a {
+            text-decoration: none;
+            color: $color-primary;
+
+            &:hover {
+                color: $color-focus;
+            }
+        }
+    }
+}
