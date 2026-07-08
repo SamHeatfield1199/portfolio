@@ -6,7 +6,7 @@ export default function Greeting() {
         <>  
                <div className="greeting">
             <div className="greeting__content">
-                <h3 className="greeting__greeting">こんにちは!</h3>
+                <h3 className="greeting__greeting">Hello!</h3>
                 <p className="greeting__title">I’m Anastasia ▌</p>
                 <p className="greeting__subtitle">Frontend Developer</p>
                 <p className="greeting__description">I build clean and efficient web applications.</p>
@@ -14,7 +14,7 @@ export default function Greeting() {
                     <svg className="pixel-button__icon" width="16" height="12" viewBox="0 0 16 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M2 6 H11 M8 2 L14 6 L8 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
                     </svg>
-                    <span>view my work</span>
+                    <span>view my works</span>
                 </button>
             </div>
             <div className="greeting__image-wrap">

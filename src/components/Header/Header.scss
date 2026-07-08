@@ -13,10 +13,10 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgb(255 255 255 / 95%);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid #E1DAC9;
-    box-shadow: 0 4px 20px rgba(32,29,68,0.04);
+    box-shadow: 0 4px 20px rgb(32 29 68 / 4%);
 
     &__logo {
         font-size: 16px;
