@@ -1,35 +1,36 @@
 @use "@styles/variables" as *;
 
 .about {
-	width: min(100%, 1200px);
-	margin: 0 auto;
-	padding: 60px 24px 0;
+	width: min(92vw, 1800px);
+	margin: 0 auto clamp(38px, 4vw, 72px);
+	padding: clamp(60px, 5vw, 100px) clamp(24px, 3vw, 60px) 0;
 	display: grid;
-	grid-template-columns: minmax(320px, 1fr) minmax(360px, 520px);
+	grid-template-columns: minmax(520px, 1fr) minmax(320px, 0.8fr);
 	align-items: center;
-	gap: 48px;
-	margin-bottom: 38px;
+	gap: clamp(48px, 5vw, 100px);
 
 	&__content {
 		display: flex;
 		flex-direction: column;
-		gap: 18px;
-		max-width: 560px;
+		align-items: flex-start;
+		gap: clamp(18px, 1.5vw, 28px);
 		min-width: 0;
 	}
 
 	&__heading {
-		font-family: $font-primary;
-		color: #8B70E8;
-		font-size: clamp(1.1rem, 2.5vw, 1.6rem);
 		margin: 0;
+		font-family: $font-primary;
+		font-size: clamp(1.6rem, 2vw, 2.5rem);
+		color: #8b70e8;
 	}
 
 	&__description {
-		font-size: 0.98rem;
-		color: $color-secondary;
-		line-height: 1.6;
+		max-width: 700px;
 		margin: 0;
+		font-weight: 700;
+		font-size: clamp(0.98rem, 1.1vw, 1.35rem);
+		line-height: 1.6;
+		color: $color-secondary;
 	}
 
 	&__image-wrap {
@@ -40,84 +41,100 @@
 	}
 
 	&__image {
-		width: 100%;
-		max-width: 520px;
+		width: clamp(520px, 38vw, 850px);
+		max-width: 100%;
 		height: auto;
 		object-fit: contain;
+		image-rendering: pixelated;
 	}
 
 	&__cards {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 18px;
-		margin-top: 20px;
 		grid-column: 1 / -1;
 		width: 100%;
+		margin-top: clamp(20px, 2vw, 36px);
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: clamp(18px, 1.5vw, 28px);
 	}
 
 	&__card {
+		min-height: clamp(100px, 8vw, 150px);
+		padding: clamp(16px, 1.5vw, 28px);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 8px;
-		padding: 16px;
-		border-radius: 10px;
+		justify-content: center;
+		gap: clamp(8px, 0.8vw, 14px);
+		text-align: center;
 		background: rgb(255 255 255 / 2%);
 		border: 2px solid rgb(47 36 88 / 8%);
-		min-height: 100px;
-		text-align: center;
+		border-radius: 10px;
 	}
 
 	&__card-icon {
-		width: 36px;
-		height: 36px;
+		width: clamp(36px, 5vw, 70px);
+		height: clamp(36px, 5vw, 70px);
 		flex-shrink: 0;
 	}
 
 	&__card-title {
-		font-size: 0.9rem;
+		font-size: clamp(0.9rem, 1vw, 1.2rem);
 		font-weight: 600;
 		color: $color-secondary;
 	}
 
 	&__card-sub {
-		font-size: 0.82rem;
+		font-size: clamp(0.82rem, 0.9vw, 1.1rem);
+		line-height: 1.5;
 		color: $color-secondary;
 		opacity: 0.95;
 	}
 }
 
-@media (width <= 980px) {
+@media (width <=980px) {
 	.about {
+		width: 100%;
 		grid-template-columns: 1fr;
-		padding-top: 40px;
-	}
+		gap: 40px;
+		padding: 40px 24px 0;
 
-	.about__image-wrap {
-		align-items: center;
+		&__image-wrap {
+			align-items: center;
+		}
+
+		&__image {
+			width: min(100%, 600px);
+		}
 	}
 }
 
-@media (width <= 768px) {
+@media (width <=768px) {
 	.about {
 		gap: 24px;
 		padding: 24px 16px 0;
-	}
 
-	.about__image {
-		max-width: 420px;
-	}
-}
+		&__image {
+			width: min(100%, 480px);
+		}
 
-@media (width <= 640px) {
-	.about__cards {
-		grid-template-columns: repeat(2, 1fr);
+		&__cards {
+			gap: 16px;
+		}
 	}
 }
 
-@media (width <= 420px) {
-	.about__cards {
-		grid-template-columns: 1fr;
+@media (width <=640px) {
+	.about {
+		&__cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 }
 
+@media (width <=420px) {
+	.about {
+		&__cards {
+			grid-template-columns: 1fr;
+		}
+	}
+}

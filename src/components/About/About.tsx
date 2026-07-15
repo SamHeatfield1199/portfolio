@@ -27,33 +27,33 @@ export default function About() {
       <div className="about__cards">
         <div className="about__card">
           <img className="about__card-icon" src={residence} />
-            <div className="about__card-title">Residence</div>
-            <div className="about__card-sub">Russia</div>
+          <div className="about__card-title">Residence</div>
+          <div className="about__card-sub">Russia</div>
         </div>
 
         <div className="about__card">
           <img className="about__card-icon" src={hobbies} />
-            <div className="about__card-title">Hobbies</div>
-            <div className="about__card-sub">Music, Travel, Games, Coffee</div>
+          <div className="about__card-title">Hobbies</div>
+          <div className="about__card-sub">Music, Travel, Games, Coffee</div>
         </div>
 
         <div className="about__card">
           <img className="about__card-icon" src={codeStyle} />
-            <div className="about__card-title">Focus</div>
-            <div className="about__card-sub">
-              Clean Code
-              <br />
-              UI/UX
+          <div className="about__card-title">Focus</div>
+          <div className="about__card-sub">
+            Clean Code
+            <br />
+            UI/UX
           </div>
         </div>
 
         <div className="about__card">
           <img className="about__card-icon" src={growth} />
-            <div className="about__card-title">Always Learning</div>
-            <div className="about__card-sub">
-              New Tech
-              <br />
-              Every Day
+          <div className="about__card-title">Always Learning</div>
+          <div className="about__card-sub">
+            New Tech
+            <br />
+            Every Day
           </div>
         </div>
       </div>

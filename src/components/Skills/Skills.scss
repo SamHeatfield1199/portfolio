@@ -1,0 +1,282 @@
+@use "@styles/variables" as *;
+
+.skills {
+    width: min(92vw, 1800px);
+    margin: 0 auto;
+    padding: clamp(60px, 5vw, 100px) 0;
+    overflow: hidden;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 1.5vw, 20px);
+        margin-bottom: clamp(40px, 4vw, 64px);
+    }
+
+    &__header-icon {
+        width: clamp(42px, 7vw, 100px);
+        height: clamp(42px, 7vw, 100px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(24px, 2vw, 34px);
+        flex-shrink: 0;
+    }
+
+    &__heading {
+        margin: 0;
+        font-family: $font-primary;
+        font-size: clamp(1.6rem, 2vw, 2.5rem);
+        color: $color-secondary;
+    }
+
+    &__subtitle {
+        margin: 8px 0 0;
+        font-family: $font-primary;
+        font-size: clamp(0.75rem, 0.8vw, 1rem);
+        color: #8b70e8;
+    }
+
+    &__groups {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(36px, 4vw, 64px);
+    }
+
+    &__group {
+        width: 100%;
+        min-width: 0;
+    }
+
+    &__group-title {
+        margin: 0 0 clamp(16px, 1.5vw, 24px);
+        font-size: clamp(1rem, 1.2vw, 1.4rem);
+        font-weight: 600;
+        color: $color-secondary;
+    }
+
+    &__slider {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &__track {
+        width: max-content;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: clamp(16px, 1.5vw, 28px);
+
+        &:hover {
+            animation-play-state: paused;
+        }
+    }
+
+    &__learning {
+        position: relative;
+        width: 100%;
+        margin-top: clamp(90px, 8vw, 140px);
+    }
+
+    &__terminal {
+        position: relative;
+        width: 100%;
+        min-height: clamp(130px, 10vw, 180px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(20px, 2vw, 32px) clamp(24px, 2.5vw, 40px);
+        padding-right: clamp(120px, 12vw, 220px);
+        background: linear-gradient(135deg,#393466,#2c2854);
+        border: 2px solid #29244c;
+        border-radius: 6px;
+        color: #eee8ff;
+        box-shadow:
+            inset 2px 2px 0 rgb(255 255 255 / 8%),
+            3px 3px 0 rgb(45 35 70 / 15%);
+
+        p {
+            margin: 0;
+            font-family: $font-primary;
+            font-size: clamp(0.7rem, 0.8vw, 1rem);
+            line-height: 1.8;
+
+            &:not(:last-of-type) {
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+    &__terminal-cursor {
+        position: absolute;
+        right: clamp(20px, 2vw, 32px);
+        bottom: clamp(12px, 1vw, 20px);
+        animation: terminal-blink 1s steps(1) infinite;
+    }
+
+    &__V {
+        position: absolute;
+        right: clamp(24px, 4vw, 70px);
+        bottom: calc(100% - 40px);
+        width: clamp(100px, 9vw, 160px);
+        height: auto;
+        z-index: 2;
+    }
+}
+
+.skill-card {
+    width: clamp(140px, 10vw, 190px);
+    min-height: clamp(140px, 10vw, 190px);
+    padding: clamp(16px, 1.5vw, 26px);
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 1vw, 20px);
+    background: #fff;
+    border: 2px solid rgb(47 36 88 / 15%);
+    border-radius: 8px;
+    box-shadow: 2px 2px 0 rgb(139 112 232 / 8%);
+
+    &__icon {
+        width: clamp(52px, 4vw, 76px);
+        height: clamp(52px, 4vw, 76px);
+        object-fit: contain;
+    }
+
+    &__name {
+        font-family: $font-primary;
+        font-size: clamp(0.72rem, 0.75vw, 0.95rem);
+        font-weight: 600;
+        color: $color-secondary;
+        text-align: center;
+        white-space: nowrap;
+    }
+}
+
+@keyframes terminal-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (width <=980px) {
+    .skills {
+        width: 100%;
+        padding: clamp(50px, 6vw, 70px) 24px;
+
+        &__groups {
+            gap: 44px;
+        }
+
+        &__learning {
+            margin-top: 100px;
+        }
+
+        &__terminal {
+            min-height: 140px;
+            padding: 24px;
+            padding-right: 150px;
+        }
+
+        &__V {
+            width: 120px;
+            right: 30px;
+            bottom: calc(100% - 22px);
+        }
+    }
+}
+
+@media (width <=768px) {
+    .skills {
+        padding: 50px 16px;
+
+        &__header {
+            margin-bottom: 36px;
+        }
+
+        &__groups {
+            gap: 36px;
+        }
+
+        &__learning {
+            margin-top: 90px;
+        }
+
+        &__terminal {
+            min-height: 130px;
+            padding: 20px;
+            padding-right: 110px;
+
+            p {
+                font-size: 0.7rem;
+                line-height: 1.7;
+            }
+        }
+
+        &__V {
+            width: 95px;
+            right: 20px;
+            bottom: calc(100% - 18px);
+        }
+    }
+
+    .skill-card {
+        width: 130px;
+        min-height: 130px;
+        padding: 16px;
+
+        &__icon {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+
+@media (width <=480px) {
+    .skills {
+        padding: 40px 12px;
+
+        &__learning {
+            margin-top: 75px;
+        }
+
+        &__terminal {
+            min-height: 150px;
+            padding: 20px 16px;
+            padding-right: 16px;
+
+            p {
+                max-width: 100%;
+                font-size: 0.65rem;
+                line-height: 1.8;
+            }
+        }
+
+        &__terminal-cursor {
+            right: 16px;
+            bottom: 10px;
+        }
+
+        &__V {
+            width: 75px;
+            right: 14px;
+            bottom: calc(100% - 14px);
+        }
+    }
+
+    .skill-card {
+        width: 120px;
+        min-height: 120px;
+
+        &__icon {
+            width: 46px;
+            height: 46px;
+        }
+
+        &__name {
+            font-size: 0.68rem;
+        }
+    }
+}
