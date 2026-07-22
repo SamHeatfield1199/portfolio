@@ -14,13 +14,30 @@ export default function About() {
       </div>
 
       <div className="about__content">
-        <img className="about__card-icon" src={aboutMe} />
-        <h3 className="about__heading">// about me</h3>
+        <header className="about__header">
+          <img className="about__header-icon" src={aboutMe} alt="" />
+          <div>
+            <h2 className="about__heading">About me</h2>
+            <p className="about__subtitle">// who I am</p>
+          </div>
+        </header>
 
         <p className="about__description">
-          I’m a frontend developer who loves creating intuitive and beautiful
-          web experiences. I enjoy turning ideas into real products using modern
-          technologies.
+          <div>
+            I'm a frontend developer passionate about creating intuitive and
+            accessible web experiences, turning ideas into real products with
+            modern frontend technologies.
+          </div>
+          <br />
+          <div>
+            My priorities are clean architecture, thoughtful UX, and writing
+            maintainable code that makes both users and developers happy.
+          </div>
+          <br />
+          <div>
+            Constantly exploring new technologies, I believe it's attention to
+            detail that makes great products memorable.
+          </div>
         </p>
       </div>
 

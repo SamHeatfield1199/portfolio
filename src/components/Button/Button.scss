@@ -1,0 +1,44 @@
+.pixel-button {
+    margin-top: 15px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: #caa6ff;
+    color: #231942;
+    border: 2px solid #2d2346;
+    font-family: "Press Start 2P", monospace;
+    font-size: 15px;
+    text-transform: lowercase;
+    cursor: pointer;
+    user-select: none;
+    width: 200px;
+    box-shadow:
+        inset 2px 2px 0 #e9d7ff,
+        inset -2px -2px 0 #9f76dc,
+        4px 4px 0 #2d2346;
+
+    &__icon {
+        display: block;
+        width: 16px;
+        height: 12px;
+    }
+
+    &:hover {
+        background: #d1afff;
+        box-shadow:
+            inset 2px 2px 0 #f0e2ff,
+            inset -2px -2px 0 #b894ff,
+            4px 6px 0 #2d2346;
+    }
+
+    &:active {
+        transform: translateY(2px);
+        box-shadow:
+            inset -2px -2px 0 #e9d7ff,
+            inset 2px 2px 0 #9f76dc,
+            2px 2px 0 #2d2346;
+    }
+}

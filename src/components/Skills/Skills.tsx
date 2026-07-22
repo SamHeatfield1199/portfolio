@@ -86,7 +86,13 @@ function SkillCard({ name, icon }: { name: string; icon: string }) {
   );
 }
 
-function SkillsRow({ title, skills}: {title: string; skills: { name: string; icon: string }[]}) {
+function SkillsRow({
+  title,
+  skills,
+}: {
+  title: string;
+  skills: { name: string; icon: string }[];
+}) {
   return (
     <div className="skills__group">
       <h3 className="skills__group-title">{title}</h3>
@@ -108,7 +114,7 @@ export default function Skills() {
   return (
     <section className="skills">
       <header className="skills__header">
-          <img className="skills__header-icon" src={Stack} alt="" />
+        <img className="skills__header-icon" src={Stack} alt="" />
         <div>
           <h2 className="skills__heading">Skills</h2>
           <p className="skills__subtitle">// my toolkit</p>
@@ -125,9 +131,8 @@ export default function Skills() {
         <div className="skills__terminal">
           <p>&gt; Always learning...</p>
           <p>
-            &gt; Currently exploring new technologies and
-            <br />
-            &nbsp;&nbsp;improving my skills every day.
+            &gt; Currently exploring new technologies and &nbsp;&nbsp;improving
+            my skills every day.
           </p>
           <span className="skills__terminal-cursor">_</span>
         </div>

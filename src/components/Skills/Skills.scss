@@ -3,7 +3,6 @@
 .skills {
     width: min(92vw, 1800px);
     margin: 0 auto;
-    padding: clamp(60px, 5vw, 100px) 0;
     overflow: hidden;
 
     &__header {
@@ -75,7 +74,7 @@
     &__learning {
         position: relative;
         width: 100%;
-        margin-top: clamp(90px, 8vw, 140px);
+        margin-top: 2vw;
     }
 
     &__terminal {
@@ -87,7 +86,7 @@
         justify-content: center;
         padding: clamp(20px, 2vw, 32px) clamp(24px, 2.5vw, 40px);
         padding-right: clamp(120px, 12vw, 220px);
-        background: linear-gradient(135deg,#393466,#2c2854);
+        background: linear-gradient(135deg, #393466, #2c2854);
         border: 2px solid #29244c;
         border-radius: 6px;
         color: #eee8ff;
