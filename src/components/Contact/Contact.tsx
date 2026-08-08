@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import "./Contact.scss";
 import contact from "@/assets/images/contact.png";
 import contactIcon from "@/assets/icons/contactIcon.svg";
@@ -9,6 +10,7 @@ import Button from "../Button/Button";
 const recipientEmail = "asmirnova1199@gmail.com";
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -45,8 +47,8 @@ export default function Contact() {
       <header className="contact__header">
         <img className="contact__header-icon" src={contactIcon} />
         <div>
-          <h2 className="contact__heading">Get in touch</h2>
-          <p className="contact__subtitle">// let's connect!</p>
+          <h2 className="contact__heading">{t("contact.heading")}</h2>
+          <p className="contact__subtitle">{t("contact.subtitle")}</p>
         </div>
       </header>
 
@@ -56,10 +58,10 @@ export default function Contact() {
           <form className="contact__form" onSubmit={handleSubmit}>
             <div className="contact__form-content">
               <label>
-                <span>Name</span>
+                <span>{t("contact.name")}</span>
                 <input
                   type="text"
-                  placeholder="Your name"
+                  placeholder={t("contact.namePlaceholder")}
                   value={formData.name}
                   onChange={updateField("name")}
                   required
@@ -67,10 +69,10 @@ export default function Contact() {
               </label>
 
               <label>
-                <span>Email</span>
+                <span>{t("contact.email")}</span>
                 <input
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder={t("contact.emailPlaceholder")}
                   value={formData.email}
                   onChange={updateField("email")}
                   required
@@ -78,17 +80,17 @@ export default function Contact() {
               </label>
 
               <label>
-                <span>Message</span>
+                <span>{t("contact.message")}</span>
                 <textarea
                   rows={4}
-                  placeholder="Your message..."
+                  placeholder={t("contact.messagePlaceholder")}
                   value={formData.message}
                   onChange={updateField("message")}
                   required
                 />
               </label>
 
-              <Button text="Send message" />
+              <Button text={t("contact.submit")} />
             </div>
           </form>
         </div>
@@ -96,7 +98,7 @@ export default function Contact() {
       </div>
 
       <div className="contact__socials">
-        <h3>Find me here</h3>
+        <h3>{t("contact.socials")}</h3>
 
         <div className="contact__links">
           <a

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import aboutIcon from "@/assets/icons/about.svg";
 import calendarIcon from "@/assets/icons/calendar.svg";
 import cartIcon from "@/assets/icons/cart.svg";
@@ -13,74 +14,19 @@ import usersIcon from "@/assets/icons/users.svg";
 import experienceImage from "@/assets/images/experience.png";
 import "./Experience.scss";
 
-const companyDetails = [
-  {
-    label: "Industry",
-    value: "E-commerce",
-    icon: cartIcon,
-  },
-  {
-    label: "Team",
-    value: "8 developers",
-    icon: usersIcon,
-  },
-  {
-    label: "Methodology",
-    value: "Agile / Scrum",
-    icon: methodologyIcon,
-  },
-  {
-    label: "Environment",
-    value: "Production",
-    icon: environmentIcon,
-  },
-];
+const detailIcons = [cartIcon, usersIcon, methodologyIcon, environmentIcon];
 
-const responsibilities = [
-  "Developed and maintained key features for the cart and checkout flow.",
-  "Implemented new functionality and improved existing features.",
-  "Collaborated with designers, backend developers, and QA.",
-  "Participated in code reviews and contributed to team improvements.",
-  "Improved performance, fixed bugs, and worked with legacy code.",
-  "Refactored modules and improved code quality.",
-];
-
-const achievements = [
-  {
-    title: "100+",
-    subtitle: "Features shipped to production",
-    icon: rocketIcon,
-  },
-  {
-    title: "Core features",
-    subtitle: "Cart, Checkout, Payments, Orders",
-    icon: cartIcon,
-  },
-  {
-    title: "Performance",
-    subtitle: "Improved page load time and UX",
-    icon: performanceIcon,
-  },
-  {
-    title: "Code Quality",
-    subtitle: "Code reviews, refactoring and best practices",
-    icon: codeStyleIcon,
-  },
-  {
-    title: "Team Collaboration",
-    subtitle: "Knowledge sharing and cross-functional work",
-    icon: usersIcon,
-  },
-  {
-    title: "Stability",
-    subtitle: "Bug fixing and user experience improvements",
-    icon: stabilityIcon,
-  },
+const achievementIcons = [
+  rocketIcon,
+  cartIcon,
+  performanceIcon,
+  codeStyleIcon,
+  usersIcon,
+  stabilityIcon,
 ];
 
 const techStackGroups = [
   {
-    title: "Languages",
     items: [
       {
         name: "TypeScript",
@@ -93,7 +39,6 @@ const techStackGroups = [
     ],
   },
   {
-    title: "Frameworks & Libraries",
     items: [
       {
         name: "Vue 3",
@@ -110,7 +55,6 @@ const techStackGroups = [
     ],
   },
   {
-    title: "Styling",
     items: [
       {
         name: "SCSS",
@@ -119,7 +63,6 @@ const techStackGroups = [
     ],
   },
   {
-    title: "Build & Tools",
     items: [
       {
         name: "Webpack",
@@ -142,6 +85,17 @@ const techStackGroups = [
 ];
 
 export default function Experience() {
+  const { t } = useTranslation();
+
+  const details = t('experience.details', { returnObjects: true }) as { label: string; value: string }[];
+  const responsibilities = t('experience.responsibilities.items', { returnObjects: true }) as string[];
+  const achievements = t('experience.achievements.items', { returnObjects: true }) as { title: string; subtitle: string }[];
+  const stackGroupTitles = t('experience.techstack.groups', { returnObjects: true }) as string[];
+
+  const companyDetails = details.map((item, i) => ({ ...item, icon: detailIcons[i] }));
+  const achievementCards = achievements.map((item, i) => ({ ...item, icon: achievementIcons[i] }));
+  const localizedStackGroups = techStackGroups.map((group, i) => ({ ...group, title: stackGroupTitles[i] ?? '' }));
+
   return (
     <section className="experience" id="experience">
       <header className="experience__header">
@@ -152,17 +106,14 @@ export default function Experience() {
           aria-hidden="true"
         />
         <div>
-          <h2 className="experience__heading">Experience</h2>
-          <p className="experience__subtitle">// commercial experience</p>
+          <h2 className="experience__heading">{t('experience.heading')}</h2>
+          <p className="experience__subtitle">{t('experience.subtitle')}</p>
         </div>
       </header>
 
       <div className="experience__hero">
         <div className="experience__intro">
-          <p className="experience__description">
-            4 years of building user-friendly web interfaces and working in a
-            product team on one of Russia&apos;s largest e-commerce platforms.
-          </p>
+          <p className="experience__description">{t('experience.description')}</p>
 
           <article className="experience__company">
             <div className="experience__company-top">
@@ -172,7 +123,7 @@ export default function Experience() {
 
               <div className="experience__company-content">
                 <h3 className="experience__company-title">DNS</h3>
-                <p className="experience__company-role">Frontend Developer</p>
+                <p className="experience__company-role">{t('experience.company.role')}</p>
 
                 <div className="experience__company-badges">
                   <span className="experience__company-badge">
@@ -182,9 +133,9 @@ export default function Experience() {
                       alt=""
                       aria-hidden="true"
                     />
-                    2021 – Present (4 years)
+                    {t('experience.company.duration')}
                   </span>
-                  <span className="experience__company-badge">Full-time</span>
+                  <span className="experience__company-badge">{t('experience.company.employment')}</span>
                 </div>
               </div>
             </div>
@@ -201,18 +152,12 @@ export default function Experience() {
                     aria-hidden="true"
                   />
                   <div>
-                    <p className="experience__company-detail-label">
-                      {item.label}
-                    </p>
-                    <p className="experience__company-detail-value">
-                      {item.value}
-                    </p>
+                    <p className="experience__company-detail-label">{item.label}</p>
+                    <p className="experience__company-detail-value">{item.value}</p>
                   </div>
                 </div>
               ))}
             </div>
-
-  
           </article>
         </div>
 
@@ -236,15 +181,15 @@ export default function Experience() {
             />
             <div>
               <h3 className="experience__block-title experience__block-title--plain">
-                Responsibilities
+                {t('experience.responsibilities.title')}
               </h3>
-              <p className="experience__block-subtitle">// what I do</p>
+              <p className="experience__block-subtitle">{t('experience.responsibilities.subtitle')}</p>
             </div>
           </header>
 
           <ul className="experience__list">
-            {responsibilities.map((item) => (
-              <li key={item} className="experience__list-item">
+            {responsibilities.map((item, i) => (
+              <li key={i} className="experience__list-item">
                 {item}
               </li>
             ))}
@@ -261,15 +206,15 @@ export default function Experience() {
             />
             <div>
               <h3 className="experience__block-title experience__block-title--plain">
-                Achievements
+                {t('experience.achievements.title')}
               </h3>
-              <p className="experience__block-subtitle">// results that matter</p>
+              <p className="experience__block-subtitle">{t('experience.achievements.subtitle')}</p>
             </div>
           </header>
 
           <div className="experience__achievements">
-            {achievements.map((item) => (
-              <div key={item.title} className="experience__achievement-card">
+            {achievementCards.map((item, i) => (
+              <div key={i} className="experience__achievement-card">
                 <img
                   className="experience__achievement-icon"
                   src={item.icon}
@@ -277,9 +222,7 @@ export default function Experience() {
                   aria-hidden="true"
                 />
                 <p className="experience__achievement-title">{item.title}</p>
-                <p className="experience__achievement-subtitle">
-                  {item.subtitle}
-                </p>
+                <p className="experience__achievement-subtitle">{item.subtitle}</p>
               </div>
             ))}
           </div>
@@ -295,14 +238,14 @@ export default function Experience() {
             />
             <div>
               <h3 className="experience__block-title experience__block-title--plain">
-                Tech stack
+                {t('experience.techstack.title')}
               </h3>
-              <p className="experience__block-subtitle">// tools & technologies</p>
+              <p className="experience__block-subtitle">{t('experience.techstack.subtitle')}</p>
             </div>
           </header>
 
           <div className="experience__stack">
-            {techStackGroups.map((group) => (
+            {localizedStackGroups.map((group) => (
               <div key={group.title} className="experience__stack-group">
                 <p className="experience__stack-group-title">{group.title}</p>
                 <div className="experience__stack-items">

@@ -1,10 +1,10 @@
+import { useTranslation } from "react-i18next";
 import "./Skills.scss";
 import V from "@/assets/icons/V.svg";
 import Stack from "@/assets/icons/stack.svg";
 
-const skillGroups = [
+const skillGroupData = [
   {
-    title: "Languages",
     skills: [
       {
         name: "TypeScript",
@@ -25,7 +25,6 @@ const skillGroups = [
     ],
   },
   {
-    title: "Frameworks & Libraries",
     skills: [
       {
         name: "Vue.js",
@@ -46,7 +45,6 @@ const skillGroups = [
     ],
   },
   {
-    title: "Tools & Others",
     skills: [
       {
         name: "Git",
@@ -80,7 +78,6 @@ function SkillCard({ name, icon }: { name: string; icon: string }) {
   return (
     <article className="skill-card">
       <img className="skill-card__icon" src={icon} alt={`${name} icon`} />
-
       <span className="skill-card__name">{name}</span>
     </article>
   );
@@ -96,14 +93,11 @@ function SkillsRow({
   return (
     <div className="skills__group">
       <h3 className="skills__group-title">{title}</h3>
-
       <div className="skills__slider">
         <div className="skills__track">
-          {skills.map(
-            (skill: { name: string; icon: string }, index: number) => (
-              <SkillCard key={`${skill.name}-${index}`} {...skill} />
-            ),
-          )}
+          {skills.map((skill, index) => (
+            <SkillCard key={`${skill.name}-${index}`} {...skill} />
+          ))}
         </div>
       </div>
     </div>
@@ -111,13 +105,21 @@ function SkillsRow({
 }
 
 export default function Skills() {
+  const { t } = useTranslation();
+  const groupTitles = t("skills.groups", { returnObjects: true }) as string[];
+
+  const skillGroups = skillGroupData.map((group, i) => ({
+    ...group,
+    title: groupTitles[i] ?? "",
+  }));
+
   return (
     <section className="skills" id="skills">
       <header className="skills__header">
         <img className="skills__header-icon" src={Stack} alt="" />
         <div>
-          <h2 className="skills__heading">Skills</h2>
-          <p className="skills__subtitle">// my toolkit</p>
+          <h2 className="skills__heading">{t("skills.heading")}</h2>
+          <p className="skills__subtitle">{t("skills.subtitle")}</p>
         </div>
       </header>
 
@@ -129,11 +131,8 @@ export default function Skills() {
 
       <div className="skills__learning">
         <div className="skills__terminal">
-          <p>&gt; Always learning...</p>
-          <p>
-            &gt; Currently exploring new technologies and &nbsp;&nbsp;improving
-            my skills every day.
-          </p>
+          <p>{t("skills.terminal.line1")}</p>
+          <p>{t("skills.terminal.line2")}</p>
           <span className="skills__terminal-cursor">_</span>
         </div>
         <img className="skills__V" src={V} alt="" />
