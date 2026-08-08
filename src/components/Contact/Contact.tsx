@@ -1,10 +1,45 @@
+import { useState } from "react";
+import type { ChangeEvent, FormEvent } from "react";
 import "./Contact.scss";
 import contact from "@/assets/images/contact.png";
 import contactIcon from "@/assets/icons/contactIcon.svg";
 import frame from "@/assets/images/frame.png";
 import Button from "../Button/Button";
 
+const recipientEmail = "asmirnova1199@gmail.com";
+
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const subject = `Portfolio message from ${formData.name}`;
+    const body = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      "",
+      formData.message,
+    ].join("\n");
+
+    window.location.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
+  const updateField =
+    (field: keyof typeof formData) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((current) => ({
+        ...current,
+        [field]: event.target.value,
+      }));
+    };
+
   return (
     <section className="contact" id="contact">
       <header className="contact__header">
@@ -18,21 +53,39 @@ export default function Contact() {
       <div className="contact__content">
         <div className="contact__form-wrapper">
           <img className="contact__frame" src={frame} alt="" aria-hidden="true" />
-          <form className="contact__form">
+          <form className="contact__form" onSubmit={handleSubmit}>
             <div className="contact__form-content">
               <label>
                 <span>Name</span>
-                <input type="text" placeholder="Your name" />
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={updateField("name")}
+                  required
+                />
               </label>
 
               <label>
                 <span>Email</span>
-                <input type="email" placeholder="you@example.com" />
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={updateField("email")}
+                  required
+                />
               </label>
 
               <label>
                 <span>Message</span>
-                <textarea rows={7} placeholder="Your message..." />
+                <textarea
+                  rows={7}
+                  placeholder="Your message..."
+                  value={formData.message}
+                  onChange={updateField("message")}
+                  required
+                />
               </label>
 
               <Button text="Send message" />
