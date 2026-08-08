@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="usersFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5DCE8" />
+      <stop offset="100%" stop-color="#D8C7EB" />
+    </linearGradient>
+  </defs>
+
+  <!-- Back person -->
+  <circle
+    cx="16.5"
+    cy="8.5"
+    r="2.25"
+    fill="url(#usersFill)"
+    stroke="#2A2D53"
+    stroke-width="1.5"
+  />
+  <path
+    d="M13.5 11.5 C13.5 10.75 14.25 10.5 16.5 10.5 C18.75 10.5 19.5 10.75 19.5 11.5 L19 16.5 C19 17.25 18.25 17.5 16.5 17.5 C14.75 17.5 14 17.25 14 16.5 Z"
+    fill="url(#usersFill)"
+    stroke="#2A2D53"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+
+  <!-- Front person -->
+  <circle
+    cx="8"
+    cy="7.5"
+    r="3"
+    fill="url(#usersFill)"
+    stroke="#2A2D53"
+    stroke-width="1.5"
+  />
+  <path
+    d="M4 11.5 C4 10.5 5.5 10 8 10 C10.5 10 12 10.5 12 11.5 L11.5 17.5 C11.5 18.5 10.5 19 8 19 C5.5 19 4.5 18.5 4.5 17.5 Z"
+    fill="url(#usersFill)"
+    stroke="#2A2D53"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+</svg>

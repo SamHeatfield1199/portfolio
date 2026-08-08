@@ -80,7 +80,7 @@ export default function Contact() {
               <label>
                 <span>Message</span>
                 <textarea
-                  rows={7}
+                  rows={4}
                   placeholder="Your message..."
                   value={formData.message}
                   onChange={updateField("message")}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 24 24">
+  <!-- Handle -->
+  <path
+    d="M5 7 L9 11"
+    fill="none"
+    stroke="#2A2D53"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+
+  <!-- Basket fill -->
+  <path
+    d="M8 11 L20 11 L18 18 L10 18 Z"
+    fill="#D8C7EB"
+  />
+
+  <!-- Basket outline -->
+  <path
+    d="M8 11 L20 11 L18 18 L10 18 Z"
+    fill="none"
+    stroke="#2A2D53"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+
+  <!-- Glint -->
+  <path
+    d="M13.5 13.5 L14.5 12.5 L15.5 13.5 L14.5 14.5 Z"
+    fill="#FFFFFF"
+  />
+
+  <!-- Base -->
+  <path
+    d="M7 19 L21 19"
+    fill="none"
+    stroke="#2A2D53"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+
+  <!-- Wheels -->
+  <circle cx="10" cy="21" r="1.25" fill="#2A2D53" />
+  <circle cx="18" cy="21" r="1.25" fill="#2A2D53" />
+</svg>

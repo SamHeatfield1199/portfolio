@@ -7,6 +7,7 @@ export default function Header() {
             <nav className="header__nav">
                 <a href="#home">_home</a>
                 <a href="#about">about</a>
+                <a href="#experience">experience</a>
                 <a href="#projects">projects</a>
                 <a href="#skills">skills</a>
                 <a href="#contact">contact</a>
