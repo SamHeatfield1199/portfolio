@@ -3,13 +3,17 @@
 .skills {
     width: min(92vw, 1800px);
     margin: 0 auto;
+    min-height: calc(100svh - 70px);
+    padding: clamp(20px, 3vh, 42px) 0;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 
     &__header {
         display: flex;
         align-items: center;
         gap: clamp(12px, 1.5vw, 20px);
-        margin-bottom: clamp(40px, 4vw, 64px);
+        margin-bottom: clamp(18px, 2.5vh, 36px);
     }
 
     &__header-icon {
@@ -39,7 +43,7 @@
     &__groups {
         display: flex;
         flex-direction: column;
-        gap: clamp(36px, 4vw, 64px);
+        gap: clamp(18px, 2.4vh, 36px);
     }
 
     &__group {
@@ -48,7 +52,7 @@
     }
 
     &__group-title {
-        margin: 0 0 clamp(16px, 1.5vw, 24px);
+        margin: 0 0 clamp(10px, 1.4vh, 18px);
         font-size: clamp(1rem, 1.2vw, 1.4rem);
         font-weight: 600;
         color: $color-secondary;
@@ -60,27 +64,21 @@
     }
 
     &__track {
-        width: max-content;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
         gap: clamp(16px, 1.5vw, 28px);
-
-        &:hover {
-            animation-play-state: paused;
-        }
     }
 
     &__learning {
         position: relative;
         width: 100%;
-        margin-top: 2vw;
+        margin-top: 5vw;
     }
 
     &__terminal {
         position: relative;
         width: 100%;
-        min-height: clamp(130px, 10vw, 180px);
+        min-height: clamp(104px, 14vh, 150px);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -125,8 +123,9 @@
 
 .skill-card {
     width: clamp(140px, 10vw, 190px);
-    min-height: clamp(140px, 10vw, 190px);
-    padding: clamp(16px, 1.5vw, 26px);
+    max-width: 100%;
+    min-height: clamp(104px, 14vh, 150px);
+    padding: clamp(12px, 1.2vw, 20px);
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
@@ -163,6 +162,7 @@
 @media (width <=980px) {
     .skills {
         width: 100%;
+        min-height: auto;
         padding: clamp(50px, 6vw, 70px) 24px;
 
         &__groups {
@@ -187,9 +187,37 @@
     }
 }
 
+@media (height <=760px) and (width >980px) {
+    .skills {
+        &__groups {
+            gap: 16px;
+        }
+
+        &__learning {
+            margin-top: 22px;
+        }
+
+        &__terminal {
+            min-height: 96px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+    }
+
+    .skill-card {
+        min-height: 96px;
+        padding: 12px;
+
+        &__icon {
+            width: 42px;
+            height: 42px;
+        }
+    }
+}
+
 @media (width <=768px) {
     .skills {
-        padding: 50px 16px;
+        padding: 32px 16px;
 
         &__header {
             margin-bottom: 36px;
@@ -222,7 +250,7 @@
     }
 
     .skill-card {
-        width: 130px;
+        width: 100%;
         min-height: 130px;
         padding: 16px;
 
@@ -235,7 +263,7 @@
 
 @media (width <=480px) {
     .skills {
-        padding: 40px 12px;
+        padding: 32px 12px;
 
         &__learning {
             margin-top: 75px;
@@ -266,7 +294,7 @@
     }
 
     .skill-card {
-        width: 120px;
+        width: 100%;
         min-height: 120px;
 
         &__icon {

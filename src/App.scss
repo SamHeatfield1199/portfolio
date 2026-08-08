@@ -9,6 +9,7 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 button,
@@ -27,7 +28,17 @@ body {
   font-family: $font-primary;
   margin: 0;
   padding: 0;
-   min-width: 320px;
+  min-width: 320px;
   min-height: 100vh;
   padding-top: 70px;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+section {
+  scroll-margin-top: 82px;
 }

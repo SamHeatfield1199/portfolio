@@ -1,7 +1,6 @@
 @use "@styles/variables" as *;
 
 .footer {
-
   &__bar {
     min-height: 58px;
     display: flex;
@@ -85,7 +84,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .footer {
     &__bar {
       flex-direction: column;
@@ -96,6 +95,18 @@
       white-space: normal;
       gap: 8px;
       flex-wrap: wrap;
+    }
+  }
+}
+
+@media (width <=480px) {
+  .footer {
+    &__bar {
+      padding: 14px 12px;
+    }
+
+    &__meta {
+      display: none;
     }
   }
 }

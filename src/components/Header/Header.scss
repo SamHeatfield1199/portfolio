@@ -20,6 +20,7 @@
 
     &__logo {
         font-size: 16px;
+        white-space: nowrap;
     }
 
     &__nav {
@@ -35,6 +36,46 @@
             &:hover {
                 color: $color-focus;
             }
+        }
+    }
+}
+
+@media (width <= 820px) {
+    .header {
+        height: auto;
+        min-height: 70px;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+        padding: 12px 18px;
+
+        &__nav {
+            width: 100%;
+            justify-content: space-between;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            font-size: 13px;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (width <= 480px) {
+    .header {
+        padding: 10px 14px;
+
+        &__logo {
+            font-size: 14px;
+        }
+
+        &__nav {
+            justify-content: flex-start;
+            gap: 16px;
+            font-size: 12px;
         }
     }
 }

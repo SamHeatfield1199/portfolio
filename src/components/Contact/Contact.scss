@@ -2,8 +2,11 @@
 
 .contact {
     width: min(92vw, 1800px);
-    margin: 0 auto clamp(38px, 4vw, 72px);
-    padding: clamp(60px, 5vw, 100px) clamp(24px, 3vw, 60px) 0;
+    margin: 0 auto;
+    min-height: calc(100svh - 70px);
+    padding: clamp(20px, 3vh, 42px) clamp(24px, 3vw, 60px);
+    display: flex;
+    flex-direction: column;
 
     &__header {
         display: flex;
@@ -37,10 +40,11 @@
 
     &__content {
         display: flex;
-        gap: clamp(40px, 5vw, 80px);
+        gap: clamp(28px, 4vw, 64px);
         align-items: center;
-        justify-items: center;
         justify-content: center;
+        flex: 1;
+        min-height: 0;
     }
 
     &__form-wrapper {
@@ -52,7 +56,8 @@
     &__frame {
         display: block;
         width: 100%;
-        max-height: 660px;
+        max-height: min(62svh, 560px);
+        object-fit: contain;
     }
 
     &__form {
@@ -60,13 +65,14 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 450px;
+        width: min(70%, 390px);
         gap: 10px;
 
         label {
             display: flex;
             flex-direction: column;
             gap: 8px;
+            margin-bottom: 12px;
 
             span {
                 font-size: 18px;
@@ -77,7 +83,7 @@
         input,
         textarea {
             width: 100%;
-            padding: 14px 16px;
+            padding: 10px 14px;
             border: 1px solid #d7d2ea;
             border-radius: 8px;
             background: white;
@@ -92,19 +98,21 @@
 
         textarea {
             resize: none;
-            min-height: 130px;
+            min-height: 108px;
         }
     }
 
     &__image {
-        max-height: 660px;
+        max-height: min(62svh, 560px);
+        width: min(36vw, 520px);
+        height: auto;
     }
 
     &__socials {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        padding-top: 50px;
+        padding-top: clamp(14px, 2vh, 28px);
 
         h3 {
             margin: 0;
@@ -142,19 +150,116 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (width <= 900px) {
     .contact {
+        width: 100%;
+        min-height: auto;
+        padding: 40px 24px;
+
         &__content {
-            grid-template-columns: 1fr;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        &__form-wrapper {
+            max-width: 560px;
         }
 
         &__image {
-            max-width: 320px;
+            width: min(100%, 320px);
             margin: 0 auto;
         }
 
         &__links {
             flex-wrap: wrap;
+        }
+    }
+}
+
+@media (height <=760px) and (width >900px) {
+    .contact {
+        &__frame,
+        &__image {
+            max-height: 54svh;
+        }
+
+        &__form {
+            label {
+                gap: 6px;
+
+                span {
+                    font-size: 15px;
+                }
+            }
+
+            input,
+            textarea {
+                padding: 10px 12px;
+            }
+
+            textarea {
+                min-height: 92px;
+            }
+        }
+
+        &__socials {
+            padding-top: 12px;
+            gap: 12px;
+
+            h3 {
+                font-size: 18px;
+            }
+        }
+
+        &__links {
+            a {
+                width: 52px;
+                height: 52px;
+            }
+        }
+    }
+}
+
+@media (width <= 640px) {
+    .contact {
+        padding: 32px 16px;
+
+        &__form-wrapper {
+            max-width: 420px;
+        }
+
+        &__frame {
+            display: none;
+        }
+
+        &__form {
+            position: static;
+            transform: none;
+            width: 100%;
+            padding: 20px;
+            border: 2px solid rgb(47 36 88 / 12%);
+            border-radius: 8px;
+            background: #faf9ff;
+        }
+
+        &__form-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        &__socials {
+            padding-top: 36px;
+        }
+
+        &__links {
+            gap: 12px;
+
+            a {
+                width: 56px;
+                height: 56px;
+            }
         }
     }
 }

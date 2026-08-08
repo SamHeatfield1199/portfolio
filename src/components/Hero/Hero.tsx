@@ -85,8 +85,8 @@ export default function Hero() {
     focus:   'frontend'
 };`}
         </pre>
-        <span className="hero__status">
-          <span className="hero__status-dot" />
+        <span className="hero-status">
+          <span className="hero-status-dot" />
           Available for work &gt;
         </span>
       </div>
