@@ -45,7 +45,7 @@ const decorations = [
 export default function Hero() {
   return (
     <>
-      <div className="hero">
+      <div className="hero" id="home">
         <div className="hero__background">
           {decorations.map((item, index) => (
             <span

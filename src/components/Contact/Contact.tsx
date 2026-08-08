@@ -17,7 +17,7 @@ export default function Contact() {
 
       <div className="contact__content">
         <div className="contact__form-wrapper">
-          <img className="contact__frame" src={frame} alt="" />
+          <img className="contact__frame" src={frame} alt="" aria-hidden="true" />
           <form className="contact__form">
             <div className="contact__form-content">
               <label>
@@ -46,11 +46,45 @@ export default function Contact() {
         <h3>Find me here</h3>
 
         <div className="contact__links">
-          <a href="#">Github</a>
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+              alt=""
+              aria-hidden="true"
+            />
+          </a>
 
-          <a href="#">Telega</a>
+          <a
+            href="https://t.me"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          >
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/telegram/telegram-original.svg"
+              alt=""
+              aria-hidden="true"
+            />
+          </a>
 
-          <a href="#">HH.RU</a>
+          <a
+            href="https://hh.ru"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="HH.ru"
+          >
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="16" cy="16" r="14" fill="#d6001c" />
+              <rect x="9" y="10" width="3.2" height="12" rx="1" fill="#fff" />
+              <rect x="19.8" y="10" width="3.2" height="12" rx="1" fill="#fff" />
+              <rect x="12.2" y="14.4" width="7.6" height="3.2" rx="1" fill="#fff" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>

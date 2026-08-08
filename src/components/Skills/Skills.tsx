@@ -112,7 +112,7 @@ function SkillsRow({
 
 export default function Skills() {
   return (
-    <section className="skills">
+    <section className="skills" id="skills">
       <header className="skills__header">
         <img className="skills__header-icon" src={Stack} alt="" />
         <div>

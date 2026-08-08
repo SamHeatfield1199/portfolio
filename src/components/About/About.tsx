@@ -8,7 +8,7 @@ import "./About.scss";
 
 export default function About() {
   return (
-    <section className="about">
+    <section className="about" id="about">
       <div className="about__image-wrap">
         <img src={aboutImage} alt="About Me" className="about__image" />
       </div>
