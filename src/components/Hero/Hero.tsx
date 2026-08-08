@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import heroImage from "@/assets/images/hero.png";
 import "./Hero.scss";
 import Button from "../Button/Button";
@@ -43,6 +44,8 @@ const decorations = [
 ];
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="hero" id="home">
@@ -65,13 +68,11 @@ export default function Hero() {
           ))}
         </div>
         <div className="hero__content">
-          <h3 className="hero__hero">Hello!</h3>
-          <h3 className="hero__title">I’m Anastasia ▌</h3>
-          <h4 className="hero__subtitle">Frontend Developer</h4>
-          <p className="hero__description">
-            I build clean and efficient web applications.
-          </p>
-          <Button text="View My Work" />
+          <h3 className="hero__hero">{t('hero.greeting')}</h3>
+          <h3 className="hero__title">{t('hero.title')}</h3>
+          <h4 className="hero__subtitle">{t('hero.subtitle')}</h4>
+          <p className="hero__description">{t('hero.description')}</p>
+          <Button text={t('hero.button')} />
         </div>
         <div className="hero__image-wrap">
           <img src={heroImage} alt="Hero" className="hero__image" />
@@ -87,7 +88,7 @@ export default function Hero() {
         </pre>
         <span className="hero-status">
           <span className="hero-status-dot" />
-          Available for work &gt;
+          {t('hero.available')} &gt;
         </span>
       </div>
     </>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import projectsIcon from "@/assets/icons/Projects.svg";
 import travelBlogImg from "@/assets/images/travel-blog.svg";
 import chatAppImg from "@/assets/images/chat-app.svg";
@@ -6,30 +7,21 @@ import videoPlatformImg from "@/assets/images/video-platform.svg";
 import taskManagerImg from "@/assets/images/task-manager.svg";
 import "./Projects.scss";
 
-type TagVariant =
-  | "vue"
-  | "typescript"
-  | "firebase"
-  | "socket"
-  | "scss"
-  | "node";
+type TagVariant = "vue" | "typescript" | "firebase" | "socket" | "scss" | "node";
 
-type Project = {
+type StaticProject = {
   title: string;
-  description: string;
+  image: string;
   tags: { label: string; variant: TagVariant }[];
   filterTags: string[];
   url: string;
-  image: string;
 };
 
-const filters = ["All", "Vue", "TypeScript", "Firebase", "Node.js"];
+const FILTER_KEYS = ["All", "Vue", "TypeScript", "Firebase", "Node.js"] as const;
 
-const projects: Project[] = [
+const staticProjects: StaticProject[] = [
   {
     title: "Travel Blog",
-    description:
-      "A travel blog built with Vue and TypeScript. Features photo galleries, interactive maps, and Firebase authentication.",
     tags: [
       { label: "Vue", variant: "vue" },
       { label: "TS", variant: "typescript" },
@@ -41,8 +33,6 @@ const projects: Project[] = [
   },
   {
     title: "Chat App",
-    description:
-      "Real-time chat application with Vue and Socket.IO. Supports private messaging, group chats, and online status.",
     tags: [
       { label: "Vue", variant: "vue" },
       { label: "TS", variant: "typescript" },
@@ -54,8 +44,6 @@ const projects: Project[] = [
   },
   {
     title: "Video Platform",
-    description:
-      "Video streaming platform with Vue and TypeScript. Includes video upload, playback controls, and user profiles.",
     tags: [
       { label: "Vue", variant: "vue" },
       { label: "TS", variant: "typescript" },
@@ -67,8 +55,6 @@ const projects: Project[] = [
   },
   {
     title: "Task Manager",
-    description:
-      "Task management app with Vue and Node.js backend. Features drag-and-drop boards, due dates, and team collaboration.",
     tags: [
       { label: "Vue", variant: "vue" },
       { label: "TS", variant: "typescript" },
@@ -80,7 +66,15 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({
+  project,
+  description,
+  viewLabel,
+}: {
+  project: StaticProject;
+  description: string;
+  viewLabel: string;
+}) {
   return (
     <article className="project-card">
       <div className="project-card__image-wrap">
@@ -93,7 +87,7 @@ function ProjectCard({ project }: { project: Project }) {
 
       <div className="project-card__content">
         <h3 className="project-card__title">{project.title}</h3>
-        <p className="project-card__description">{project.description}</p>
+        <p className="project-card__description">{description}</p>
 
         <div className="project-card__tags">
           {project.tags.map((tag) => (
@@ -107,7 +101,7 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <a className="project-card__link" href={project.url}>
-          &gt; view project
+          {viewLabel}
         </a>
       </div>
     </article>
@@ -115,14 +109,16 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function Projects() {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const descriptions = t("projects.descriptions", { returnObjects: true }) as string[];
+  const viewLabel = t("projects.viewProject");
 
   const filteredProjects =
     activeFilter === "All"
-      ? projects
-      : projects.filter((project) =>
-          project.filterTags.includes(activeFilter),
-        );
+      ? staticProjects
+      : staticProjects.filter((p) => p.filterTags.includes(activeFilter));
 
   return (
     <section id="projects" className="projects">
@@ -134,30 +130,38 @@ export default function Projects() {
           aria-hidden="true"
         />
         <div>
-          <h2 className="projects__heading">Projects</h2>
-          <p className="projects__subtitle">// things I&apos;ve built</p>
+          <h2 className="projects__heading">{t("projects.heading")}</h2>
+          <p className="projects__subtitle">{t("projects.subtitle")}</p>
         </div>
       </header>
 
       <nav className="projects__filters" aria-label="Filter projects">
-        {filters.map((filter) => (
+        {FILTER_KEYS.map((key) => (
           <button
-            key={filter}
+            key={key}
             type="button"
             className={`projects__filter${
-              activeFilter === filter ? " projects__filter--active" : ""
+              activeFilter === key ? " projects__filter--active" : ""
             }`}
-            onClick={() => setActiveFilter(filter)}
+            onClick={() => setActiveFilter(key)}
           >
-            {filter}
+            {key === "All" ? t("projects.filterAll") : key}
           </button>
         ))}
       </nav>
 
       <div className="projects__grid">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.title} project={project} />
-        ))}
+        {filteredProjects.map((project) => {
+          const originalIndex = staticProjects.indexOf(project);
+          return (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              description={descriptions[originalIndex] ?? ""}
+              viewLabel={viewLabel}
+            />
+          );
+        })}
       </div>
 
       <footer className="projects__footer">
@@ -167,7 +171,7 @@ export default function Projects() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          &gt; see more on GitHub
+          {t("projects.github")}
           <img
             className="projects__github-icon"
             src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"

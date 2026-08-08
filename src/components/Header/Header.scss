@@ -38,6 +38,43 @@
             }
         }
     }
+
+    &__lang-toggle {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: 1.5px solid $color-primary;
+        border-radius: 6px;
+        padding: 4px 10px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 800;
+        color: $color-primary;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: border-color 0.2s, color 0.2s;
+
+        &:hover {
+            border-color: $color-focus;
+            color: $color-focus;
+        }
+    }
+
+    &__lang-toggle-option {
+        opacity: 0.4;
+        transition: opacity 0.2s;
+
+        &--active {
+            opacity: 1;
+            color: $color-focus;
+        }
+    }
+
+    &__lang-toggle-divider {
+        opacity: 0.3;
+    }
 }
 
 @media (width <= 820px) {
@@ -60,6 +97,11 @@
             &::-webkit-scrollbar {
                 display: none;
             }
+        }
+
+        &__lang-toggle {
+            font-size: 11px;
+            padding: 3px 8px;
         }
     }
 }

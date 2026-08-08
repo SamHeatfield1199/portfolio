@@ -1,0 +1,115 @@
+{
+  "header": {
+    "nav": {
+      "home": "_home",
+      "about": "about",
+      "experience": "experience",
+      "projects": "projects",
+      "skills": "skills",
+      "contact": "contacts"
+    }
+  },
+  "hero": {
+    "greeting": "Hello!",
+    "title": "I'm Anastasia ▌",
+    "subtitle": "Frontend Developer",
+    "description": "I build clean and efficient web applications.",
+    "button": "View My Work",
+    "available": "Available for offers"
+  },
+  "about": {
+    "heading": "About me",
+    "subtitle": "// who I am",
+    "desc1": "I'm a frontend developer passionate about creating intuitive and accessible web experiences, turning ideas into real products with modern frontend technologies.",
+    "desc2": "My priorities are clean architecture, thoughtful UX, and writing maintainable code that makes both users and developers happy.",
+    "desc3": "Constantly exploring new technologies, I believe it's attention to detail that makes great products memorable.",
+    "cards": {
+      "residence": { "title": "Residence", "sub": "Russia" },
+      "hobbies": { "title": "Hobbies", "sub": "Music, Travel, Games, Coffee" },
+      "focus": { "title": "Focus", "sub1": "Clean Code", "sub2": "UI/UX" },
+      "learning": { "title": "Always Learning", "sub1": "New Tech", "sub2": "Every Day" }
+    }
+  },
+  "experience": {
+    "heading": "Experience",
+    "subtitle": "// commercial experience",
+    "description": "4 years of building user-friendly web interfaces and working in a product team on one of Russia's largest e-commerce platforms.",
+    "company": {
+      "role": "Frontend Developer",
+      "duration": "2021 – Present (4 years)",
+      "employment": "Full-time"
+    },
+    "details": [
+      { "label": "Industry", "value": "E-commerce" },
+      { "label": "Team", "value": "8 developers" },
+      { "label": "Methodology", "value": "Agile" },
+      { "label": "Environment", "value": "Production" }
+    ],
+    "responsibilities": {
+      "title": "Responsibilities",
+      "subtitle": "// what I do",
+      "items": [
+        "Developed and maintained key features for the cart and checkout flow.",
+        "Implemented new functionality and improved existing features.",
+        "Collaborated with designers, backend developers, and QA.",
+        "Participated in code reviews and contributed to team improvements.",
+        "Improved performance, fixed bugs, and worked with legacy code.",
+        "Refactored modules and improved code quality."
+      ]
+    },
+    "achievements": {
+      "title": "Achievements",
+      "subtitle": "// results that matter",
+      "items": [
+        { "title": "100+", "subtitle": "Features shipped to production" },
+        { "title": "Core features", "subtitle": "Cart, Checkout, Payments, Orders" },
+        { "title": "Performance", "subtitle": "Improved page load time and UX" },
+        { "title": "Code Quality", "subtitle": "Code reviews, refactoring and best practices" },
+        { "title": "Team Collaboration", "subtitle": "Knowledge sharing and cross-functional work" },
+        { "title": "Stability", "subtitle": "Bug fixing and user experience improvements" }
+      ]
+    },
+    "techstack": {
+      "title": "Tech stack",
+      "subtitle": "// tools & technologies",
+      "groups": ["Languages", "Frameworks & Libraries", "Styling", "Build & Tools"]
+    }
+  },
+  "projects": {
+    "heading": "Projects",
+    "subtitle": "// things I've built",
+    "filterAll": "All",
+    "viewProject": "> view project",
+    "github": "> see more on GitHub",
+    "descriptions": [
+      "A travel blog built with Vue and TypeScript. Features photo galleries, interactive maps, and Firebase authentication.",
+      "Real-time chat application with Vue and Socket.IO. Supports private messaging, group chats, and online status.",
+      "Video streaming platform with Vue and TypeScript. Includes video upload, playback controls, and user profiles.",
+      "Task management app with Vue and Node.js backend. Features drag-and-drop boards, due dates, and team collaboration."
+    ]
+  },
+  "skills": {
+    "heading": "Skills",
+    "subtitle": "// my toolkit",
+    "groups": ["Languages", "Frameworks & Libraries", "Tools & Others"],
+    "terminal": {
+      "line1": "> Always learning...",
+      "line2": "> Currently exploring new technologies and   improving my skills every day."
+    }
+  },
+  "contact": {
+    "heading": "Get in touch",
+    "subtitle": "// let's connect!",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "message": "Message",
+    "messagePlaceholder": "Your message...",
+    "submit": "Send message",
+    "socials": "Find me here"
+  },
+  "footer": {
+    "tagline": "Let's build something amazing together"
+  }
+}
