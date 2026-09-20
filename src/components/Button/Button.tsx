@@ -1,8 +1,8 @@
 import "./Button.scss";
 
-export default function Button({ text }: { text: string }) {
+export default function Button({ text, type }: { text: string, type: 'button' | 'submit' | 'reset' }) {
   return (
-    <button className="pixel-button">
+    <button className="pixel-button" type={type}>
       <svg
         className="pixel-button__icon"
         width="16"

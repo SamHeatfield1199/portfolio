@@ -90,11 +90,11 @@ export default function Contact() {
                 />
               </label>
 
-              <Button text={t("contact.submit")} />
+              <Button text={t("contact.submit")} type="submit" />
             </div>
           </form>
         </div>
-        <img src={contact} alt="Contact" className="contact__image" />
+        <img src={contact} alt="Contact" className="contact__image" aria-hidden="true" />
       </div>
 
       <div className="contact__socials">

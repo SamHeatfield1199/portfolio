@@ -25,13 +25,13 @@ export default function About() {
           </div>
         </header>
 
-        <p className="about__description">
+        <div className="about__description">
           <div>{t('about.desc1')}</div>
           <br />
           <div>{t('about.desc2')}</div>
           <br />
           <div>{t('about.desc3')}</div>
-        </p>
+        </div>
       </div>
 
       <div className="about__cards">

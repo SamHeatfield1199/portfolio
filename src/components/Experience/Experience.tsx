@@ -188,8 +188,8 @@ export default function Experience() {
           </header>
 
           <ul className="experience__list">
-            {responsibilities.map((item, i) => (
-              <li key={i} className="experience__list-item">
+            {responsibilities.map((item, index) => (
+              <li key={index} className="experience__list-item">
                 {item}
               </li>
             ))}
@@ -213,8 +213,8 @@ export default function Experience() {
           </header>
 
           <div className="experience__achievements">
-            {achievementCards.map((item, i) => (
-              <div key={i} className="experience__achievement-card">
+            {achievementCards.map((item) => (
+              <div key={item.title} className="experience__achievement-card">
                 <img
                   className="experience__achievement-icon"
                   src={item.icon}

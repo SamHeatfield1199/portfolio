@@ -9,7 +9,7 @@ export default function Header() {
     };
 
     return (
-        <div className="header">
+        <header className="header">
             <div className="header__logo">{"<SamHeatfield/>"}</div>
             <nav className="header__nav">
                 <a href="#home">{t('header.nav.home')}</a>
@@ -24,6 +24,6 @@ export default function Header() {
                 <span className="header__lang-toggle-divider">|</span>
                 <span className={i18n.language === 'ru' ? 'header__lang-toggle-option--active' : 'header__lang-toggle-option'}>RU</span>
             </button>
-        </div>
+        </header>
     );
 }
