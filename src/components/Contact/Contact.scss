@@ -49,44 +49,59 @@
 
     &__form-wrapper {
         position: relative;
-        width: 100%;
-        max-width: 560px;
+        width: min(100%, 560px, calc(min(62svh, 560px) * 971 / 1220));
+        flex-shrink: 0;
+        margin-inline: auto;
     }
 
     &__frame {
         display: block;
         width: 100%;
-        max-height: min(62svh, 560px);
-        object-fit: contain;
+        height: auto;
     }
 
     &__form {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: min(70%, 390px);
-        gap: 10px;
+        inset: 12% 10% 8%;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            gap: clamp(6px, 1vh, 10px);
+        }
 
         label {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-bottom: 12px;
+            gap: clamp(4px, 0.7vh, 8px);
+            margin: 0;
+            min-width: 0;
 
             span {
-                font-size: 18px;
+                font-size: clamp(13px, 1.5vw, 18px);
                 font-weight: 600;
+            }
+
+            &:last-of-type {
+                flex: 1 1 auto;
+                min-height: 0;
             }
         }
 
         input,
         textarea {
             width: 100%;
-            padding: 10px 14px;
+            box-sizing: border-box;
+            padding: clamp(7px, 0.9vh, 10px) 12px;
             border: 1px solid #d7d2ea;
             border-radius: 8px;
             background: white;
+            color: $color-secondary;
             font: inherit;
             transition: .2s;
 
@@ -98,7 +113,17 @@
 
         textarea {
             resize: none;
-            min-height: 108px;
+            flex: 1 1 auto;
+            min-height: 56px;
+            height: 100%;
+        }
+
+        .pixel-button {
+            flex-shrink: 0;
+            width: min(100%, 200px);
+            margin-top: 4px;
+            padding: 10px 16px;
+            font-size: 12px;
         }
     }
 
@@ -169,7 +194,7 @@
         }
 
         &__form-wrapper {
-            max-width: 560px;
+            width: min(100%, 520px, calc(min(58svh, 520px) * 971 / 1220));
         }
 
         &__image {
@@ -185,7 +210,10 @@
 
 @media (height <=760px) and (width >900px) {
     .contact {
-        &__frame,
+        &__form-wrapper {
+            width: min(100%, 520px, calc(min(54svh, 520px) * 971 / 1220));
+        }
+
         &__image {
             max-height: 54svh;
         }
@@ -232,7 +260,7 @@
         padding: 32px 16px;
 
         &__form-wrapper {
-            max-width: 420px;
+            width: min(100%, 420px);
         }
 
         &__frame {
@@ -241,8 +269,11 @@
 
         &__form {
             position: static;
+            inset: auto;
             transform: none;
             width: 100%;
+            max-height: none;
+            overflow: visible;
             padding: 20px;
             border: 2px solid rgb(47 36 88 / 12%);
             border-radius: 8px;
@@ -251,6 +282,16 @@
 
             label span {
                 text-shadow: none;
+            }
+
+            textarea {
+                min-height: 96px;
+                height: auto;
+            }
+
+            .pixel-button {
+                padding: 14px 28px;
+                font-size: 15px;
             }
         }
 

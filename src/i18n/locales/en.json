@@ -15,7 +15,8 @@
     "subtitle": "Frontend Developer",
     "description": "I build clean and efficient web applications.",
     "button": "View My Work",
-    "available": "Available for offers"
+    "available": "Available for offers",
+    "timezone": "Timezone: UTC+3"
   },
   "about": {
     "heading": "About me",

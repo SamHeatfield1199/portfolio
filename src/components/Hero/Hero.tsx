@@ -69,8 +69,11 @@ export default function Hero() {
 };`}
         </pre>
         <span className="hero-status">
-          <span className="hero-status-dot" />
-          {t('hero.available')} &gt;
+          <span className="hero-status__row">
+            <span className="hero-status-dot" />
+            {t('hero.available')} &gt;
+          </span>
+          <span className="hero-status__tz">{t('hero.timezone')}</span>
         </span>
       </div>
     </section>
