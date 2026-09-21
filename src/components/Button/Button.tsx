@@ -1,8 +1,14 @@
 import "./Button.scss";
 
-export default function Button({ text, type }: { text: string, type: 'button' | 'submit' | 'reset' }) {
+type ButtonProps = {
+  text: string;
+  type?: "button" | "submit" | "reset";
+  href?: string;
+};
+
+function ButtonContent({ text }: { text: string }) {
   return (
-    <button className="pixel-button" type={type}>
+    <>
       <svg
         className="pixel-button__icon"
         width="16"
@@ -20,6 +26,22 @@ export default function Button({ text, type }: { text: string, type: 'button' | 
         />
       </svg>
       <span>{text}</span>
+    </>
+  );
+}
+
+export default function Button({ text, type = "button", href }: ButtonProps) {
+  if (href) {
+    return (
+      <a className="pixel-button" href={href}>
+        <ButtonContent text={text} />
+      </a>
+    );
+  }
+
+  return (
+    <button className="pixel-button" type={type}>
+      <ButtonContent text={text} />
     </button>
   );
 }

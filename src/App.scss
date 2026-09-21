@@ -42,3 +42,13 @@ svg {
 section {
   scroll-margin-top: 82px;
 }
+
+@media (width <= 820px) {
+  body {
+    padding-top: 108px;
+  }
+
+  section {
+    scroll-margin-top: 116px;
+  }
+}

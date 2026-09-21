@@ -1,92 +1,126 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import projectsIcon from "@/assets/icons/Projects.svg";
-import travelBlogImg from "@/assets/images/travel-blog.svg";
+import goTudaImg from "@/assets/images/go-tuda.png";
 import chatAppImg from "@/assets/images/chat-app.svg";
-import videoPlatformImg from "@/assets/images/video-platform.svg";
-import taskManagerImg from "@/assets/images/task-manager.svg";
+import cutieBoardImg from "@/assets/images/cutieboard.png";
+import btsFanSiteImg from "@/assets/images/bts-fan-site.png";
 import "./Projects.scss";
 
-type TagVariant = "vue" | "typescript" | "firebase" | "socket" | "scss" | "node";
+type TagVariant =
+  | "react"
+  | "typescript"
+  | "next"
+  | "vite"
+  | "mobx";
 
 type StaticProject = {
-  title: string;
+  id: "tudaSuda" | "chatWidget" | "cutieBoard" | "btsFanSite";
   image: string;
+  imageKind: "screenshot" | "illustration";
   tags: { label: string; variant: TagVariant }[];
   filterTags: string[];
-  url: string;
+  githubUrl: string;
+  demoUrl?: string;
+  inDevelopment?: boolean;
 };
 
-const FILTER_KEYS = ["All", "Vue", "TypeScript", "Firebase", "Node.js"] as const;
+const FILTER_KEYS = ["All", "React", "TypeScript", "Next.js"] as const;
 
 const staticProjects: StaticProject[] = [
   {
-    title: "Travel Blog",
+    id: "tudaSuda",
     tags: [
-      { label: "Vue", variant: "vue" },
+      { label: "Next.js", variant: "next" },
+      { label: "React", variant: "react" },
       { label: "TS", variant: "typescript" },
-      { label: "Firebase", variant: "firebase" },
     ],
-    filterTags: ["Vue", "TypeScript", "Firebase"],
-    url: "#",
-    image: travelBlogImg,
+    filterTags: ["React", "TypeScript", "Next.js"],
+    githubUrl: "https://github.com/SamHeatfield1199/tuda_suda",
+    demoUrl: "https://tuda-suda-ten.vercel.app/",
+    image: goTudaImg,
+    imageKind: "screenshot",
   },
   {
-    title: "Chat App",
+    id: "chatWidget",
     tags: [
-      { label: "Vue", variant: "vue" },
+      { label: "React", variant: "react" },
       { label: "TS", variant: "typescript" },
-      { label: "Socket.IO", variant: "socket" },
+      { label: "Vite", variant: "vite" },
     ],
-    filterTags: ["Vue", "TypeScript"],
-    url: "#",
+    filterTags: ["React", "TypeScript"],
+    githubUrl: "https://github.com/SamHeatfield1199/chat-widget",
     image: chatAppImg,
+    imageKind: "illustration",
   },
   {
-    title: "Video Platform",
+    id: "cutieBoard",
     tags: [
-      { label: "Vue", variant: "vue" },
+      { label: "React", variant: "react" },
       { label: "TS", variant: "typescript" },
-      { label: "SCSS", variant: "scss" },
+      { label: "MobX", variant: "mobx" },
     ],
-    filterTags: ["Vue", "TypeScript"],
-    url: "#",
-    image: videoPlatformImg,
+    filterTags: ["React", "TypeScript"],
+    githubUrl: "https://github.com/SamHeatfield1199/cutieBoard",
+    demoUrl: "https://samheatfield1199.github.io/cutieBoard/",
+    image: cutieBoardImg,
+    imageKind: "screenshot",
   },
   {
-    title: "Task Manager",
+    id: "btsFanSite",
     tags: [
-      { label: "Vue", variant: "vue" },
+      { label: "Next.js", variant: "next" },
+      { label: "React", variant: "react" },
       { label: "TS", variant: "typescript" },
-      { label: "Node.js", variant: "node" },
     ],
-    filterTags: ["Vue", "TypeScript", "Node.js"],
-    url: "#",
-    image: taskManagerImg,
+    filterTags: ["React", "TypeScript", "Next.js"],
+    githubUrl: "https://github.com/SamHeatfield1199/bts-fan-site",
+    image: btsFanSiteImg,
+    imageKind: "screenshot",
+    inDevelopment: true,
   },
 ];
 
 function ProjectCard({
   project,
+  title,
   description,
-  viewLabel,
+  githubLabel,
+  demoLabel,
+  inDevelopmentLabel,
 }: {
   project: StaticProject;
+  title: string;
   description: string;
-  viewLabel: string;
+  githubLabel: string;
+  demoLabel: string;
+  inDevelopmentLabel: string;
 }) {
   return (
     <article className="project-card">
-      <div className="project-card__image-wrap">
+      <div
+        className={`project-card__image-wrap${
+          project.imageKind === "screenshot"
+            ? " project-card__image-wrap--screenshot"
+            : ""
+        }`}
+      >
         <img
-          className="project-card__image"
+          className={`project-card__image${
+            project.imageKind === "illustration"
+              ? " project-card__image--illustration"
+              : ""
+          }`}
           src={project.image}
-          alt={`${project.title} preview`}
+          alt={`${title} preview`}
         />
+        {project.inDevelopment && (
+          <span className="project-card__banner">{inDevelopmentLabel}</span>
+        )}
       </div>
 
       <div className="project-card__content">
-        <h3 className="project-card__title">{project.title}</h3>
+        <h3 className="project-card__title">{title}</h3>
         <p className="project-card__description">{description}</p>
 
         <div className="project-card__tags">
@@ -100,9 +134,26 @@ function ProjectCard({
           ))}
         </div>
 
-        <a className="project-card__link" href={project.url}>
-          {viewLabel}
-        </a>
+        <div className="project-card__links">
+          <a
+            className="project-card__link"
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {githubLabel}
+          </a>
+          {project.demoUrl && (
+            <a
+              className="project-card__link"
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {demoLabel}
+            </a>
+          )}
+        </div>
       </div>
     </article>
   );
@@ -111,9 +162,6 @@ function ProjectCard({
 export default function Projects() {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("All");
-
-  const descriptions = t("projects.descriptions", { returnObjects: true }) as string[];
-  const viewLabel = t("projects.viewProject");
 
   const filteredProjects =
     activeFilter === "All"
@@ -151,23 +199,23 @@ export default function Projects() {
       </nav>
 
       <div className="projects__grid">
-        {filteredProjects.map((project) => {
-          const originalIndex = staticProjects.indexOf(project);
-          return (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              description={descriptions[originalIndex] ?? ""}
-              viewLabel={viewLabel}
-            />
-          );
-        })}
+        {filteredProjects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            title={t(`projects.items.${project.id}.title`)}
+            description={t(`projects.items.${project.id}.description`)}
+            githubLabel={t("projects.githubLink")}
+            demoLabel={t("projects.demoLink")}
+            inDevelopmentLabel={t("projects.inDevelopment")}
+          />
+        ))}
       </div>
 
       <footer className="projects__footer">
         <a
           className="projects__github-link"
-          href="https://github.com"
+          href="https://github.com/SamHeatfield1199"
           target="_blank"
           rel="noopener noreferrer"
         >

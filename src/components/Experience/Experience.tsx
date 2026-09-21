@@ -46,7 +46,7 @@ const techStackGroups = [
       },
       {
         name: "Pinia",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pinia/pinia-original.svg",
+        icon: "https://pinia.vuejs.org/logo.svg",
       },
       {
         name: "Vue Router",

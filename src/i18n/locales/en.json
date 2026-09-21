@@ -79,19 +79,41 @@
     "heading": "Projects",
     "subtitle": "// things I've built",
     "filterAll": "All",
-    "viewProject": "> view project",
+    "githubLink": "> GitHub",
+    "demoLink": "> live site",
+    "inDevelopment": "In development",
     "github": "> see more on GitHub",
-    "descriptions": [
-      "A travel blog built with Vue and TypeScript. Features photo galleries, interactive maps, and Firebase authentication.",
-      "Real-time chat application with Vue and Socket.IO. Supports private messaging, group chats, and online status.",
-      "Video streaming platform with Vue and TypeScript. Includes video upload, playback controls, and user profiles.",
-      "Task management app with Vue and Node.js backend. Features drag-and-drop boards, due dates, and team collaboration."
-    ]
+    "items": {
+      "tudaSuda": {
+        "title": "Go Tuda",
+        "description": "A web app that helps friends pick a meeting place without long group chats. Add people and places, share a form, and see everyone's votes in one table."
+      },
+      "chatWidget": {
+        "title": "Chat Widget",
+        "description": "A reusable React chat widget with an adapter pattern for any backend. TypeScript, a useChat hook, and a ready-made ChatWindow UI."
+      },
+      "cutieBoard": {
+        "title": "CutieBoard",
+        "description": "A Kanban board with a pink theme: multiple boards, templates, drag-and-drop cards, filters, and localStorage persistence."
+      },
+      "btsFanSite": {
+        "title": "BTS Fan Site",
+        "description": "A fan-made BTS tribute site with members, discography, and themed UI. Built with Next.js, TypeScript, and Tailwind CSS."
+      }
+    }
   },
   "skills": {
     "heading": "Skills",
     "subtitle": "// my toolkit",
-    "groups": ["Languages", "Frameworks & Libraries", "Tools & Others"],
+    "groups": {
+      "frontend": "Frontend",
+      "frameworks": "Frameworks",
+      "state": "State",
+      "ui": "UI",
+      "backend": "Backend",
+      "build": "Build tools",
+      "tools": "Tools"
+    },
     "terminal": {
       "line1": "> Always learning...",
       "line2": "> Currently exploring new technologies and   improving my skills every day."
@@ -107,7 +129,8 @@
     "message": "Message",
     "messagePlaceholder": "Your message...",
     "submit": "Send message",
-    "socials": "Find me here"
+    "socials": "Find me here",
+    "resume": "Open resume"
   },
   "footer": {
     "tagline": "Let's build something amazing together"

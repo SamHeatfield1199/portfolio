@@ -10,7 +10,11 @@ import Button from "../Button/Button";
 const recipientEmail = "asmirnova1199@gmail.com";
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRu = i18n.language.startsWith("ru");
+  const resumeHref = isRu
+    ? "https://drive.google.com/file/d/1iyOOtiXgoR5DPvMD2Pm5MXzTwyCqB7F4/view?usp=sharing"
+    : "https://drive.google.com/file/d/1imma6AcT0uapUmqXjpBbrTSWfsz_jfxO/view?usp=sharing";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -102,7 +106,7 @@ export default function Contact() {
 
         <div className="contact__links">
           <a
-            href="https://github.com"
+            href="https://github.com/SamHeatfield1199"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -115,29 +119,38 @@ export default function Contact() {
           </a>
 
           <a
-            href="https://t.me"
+            href="https://t.me/samheatfield"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Telegram"
           >
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/telegram/telegram-original.svg"
-              alt=""
-              aria-hidden="true"
-            />
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                fill="#2AABEE"
+                d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.53 8.13-1.86 8.77c-.14.62-.5.77-1.02.48l-2.82-2.08-1.36 1.31c-.15.15-.28.28-.57.28l.2-2.87 5.23-4.72c.23-.2-.05-.31-.35-.12L8.4 13.17l-2.78-.87c-.6-.19-.62-.6.13-.89l10.86-4.19c.5-.19.94.12.92.88z"
+              />
+            </svg>
           </a>
 
           <a
-            href="https://hh.ru"
+            href={resumeHref}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="HH.ru"
+            aria-label={t("contact.resume")}
           >
             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="16" cy="16" r="14" fill="#d6001c" />
-              <rect x="9" y="10" width="3.2" height="12" rx="1" fill="#fff" />
-              <rect x="19.8" y="10" width="3.2" height="12" rx="1" fill="#fff" />
-              <rect x="12.2" y="14.4" width="7.6" height="3.2" rx="1" fill="#fff" />
+              <rect x="2" y="2" width="28" height="28" rx="8" fill="#8b70e8" />
+              <text
+                x="16"
+                y="21.5"
+                textAnchor="middle"
+                fill="#fff"
+                fontSize="12"
+                fontFamily="Arial, sans-serif"
+                fontWeight="800"
+              >
+                CV
+              </text>
             </svg>
           </a>
         </div>

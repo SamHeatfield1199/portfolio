@@ -4,8 +4,10 @@ import './Header.scss';
 export default function Header() {
     const { t, i18n } = useTranslation();
 
+    const isRu = i18n.language.startsWith('ru');
+
     const toggleLanguage = () => {
-        i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en');
+        i18n.changeLanguage(isRu ? 'en' : 'ru');
     };
 
     return (
@@ -19,10 +21,10 @@ export default function Header() {
                 <a href="#skills">{t('header.nav.skills')}</a>
                 <a href="#contact">{t('header.nav.contact')}</a>
             </nav>
-            <button className="header__lang-toggle" onClick={toggleLanguage} aria-label="Switch language">
-                <span className={i18n.language === 'en' ? 'header__lang-toggle-option--active' : 'header__lang-toggle-option'}>EN</span>
+            <button type="button" className="header__lang-toggle" onClick={toggleLanguage} aria-label="Switch language">
+                <span className={!isRu ? 'header__lang-toggle-option--active' : 'header__lang-toggle-option'}>EN</span>
                 <span className="header__lang-toggle-divider">|</span>
-                <span className={i18n.language === 'ru' ? 'header__lang-toggle-option--active' : 'header__lang-toggle-option'}>RU</span>
+                <span className={isRu ? 'header__lang-toggle-option--active' : 'header__lang-toggle-option'}>RU</span>
             </button>
         </header>
     );

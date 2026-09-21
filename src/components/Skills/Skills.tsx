@@ -3,115 +3,105 @@ import "./Skills.scss";
 import V from "@/assets/icons/V.svg";
 import Stack from "@/assets/icons/stack.svg";
 
-const skillGroupData = [
+const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
+
+type Skill = {
+  name: string;
+  icon?: string;
+  badge?: string;
+};
+
+type SkillGroup = {
+  id: "frontend" | "frameworks" | "state" | "ui" | "backend" | "build" | "tools";
+  wide?: boolean;
+  skills: Skill[];
+};
+
+const skillGroupData: SkillGroup[] = [
   {
+    id: "frontend",
     skills: [
-      {
-        name: "TypeScript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-      },
-      {
-        name: "JavaScript",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "HTML5",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-      },
-      {
-        name: "CSS3",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-      },
+      { name: "TypeScript", icon: `${DEVICON}/typescript/typescript-original.svg` },
+      { name: "JavaScript", icon: `${DEVICON}/javascript/javascript-original.svg` },
+      { name: "HTML5", icon: `${DEVICON}/html5/html5-original.svg` },
+      { name: "SCSS", icon: `${DEVICON}/sass/sass-original.svg` },
     ],
   },
   {
+    id: "frameworks",
     skills: [
-      {
-        name: "Vue.js",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
-      },
-      {
-        name: "React",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-      },
-      {
-        name: "Pinia",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pinia/pinia-original.svg",
-      },
-      {
-        name: "Sass",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg",
-      },
+      { name: "Vue 3", icon: `${DEVICON}/vuejs/vuejs-original.svg` },
+      { name: "React 19", icon: `${DEVICON}/react/react-original.svg` },
+      { name: "Nuxt", icon: `${DEVICON}/nuxtjs/nuxtjs-original.svg` },
+      { name: "Next.js", icon: `${DEVICON}/nextjs/nextjs-original.svg` },
     ],
   },
   {
+    id: "state",
     skills: [
-      {
-        name: "Git",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
-      },
-      {
-        name: "GitHub",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
-      },
-      {
-        name: "VS Code",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
-      },
-      {
-        name: "Firebase",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
-      },
-      {
-        name: "Figma",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
-      },
-      {
-        name: "Vite",
-        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
-      },
+      { name: "Pinia", icon: "https://pinia.vuejs.org/logo.svg" },
+      { name: "Vuex", icon: "https://vuex.vuejs.org/logo.png" },
+      { name: "Zustand", badge: "Z" },
+      { name: "MobX", icon: "https://cdn.simpleicons.org/mobx/FF9955" },
+    ],
+  },
+  {
+    id: "ui",
+    skills: [
+      { name: "CSS Modules", icon: `${DEVICON}/css3/css3-original.svg` },
+      { name: "Material UI", icon: `${DEVICON}/materialui/materialui-original.svg` },
+      { name: "Ant Design", icon: "https://cdn.simpleicons.org/antdesign/0170FE" },
+      { name: "BEM", badge: "BEM" },
+    ],
+  },
+  {
+    id: "backend",
+    wide: true,
+    skills: [
+      { name: "PHP", icon: `${DEVICON}/php/php-original.svg` },
+      { name: "Yii2", icon: "https://cdn.simpleicons.org/yii/40B3D8" },
+      { name: "REST API", badge: "API" },
+      { name: "Kafka", icon: `${DEVICON}/apachekafka/apachekafka-original.svg` },
+      { name: "PostgreSQL", icon: `${DEVICON}/postgresql/postgresql-original.svg` },
+    ],
+  },
+  {
+    id: "build",
+    skills: [
+      { name: "Vite", icon: `${DEVICON}/vitejs/vitejs-original.svg` },
+      { name: "Webpack", icon: `${DEVICON}/webpack/webpack-original.svg` },
+      { name: "Bun", icon: `${DEVICON}/bun/bun-original.svg` },
+      { name: "ESLint", icon: `${DEVICON}/eslint/eslint-original.svg` },
+    ],
+  },
+  {
+    id: "tools",
+    skills: [
+      { name: "Git", icon: `${DEVICON}/git/git-original.svg` },
+      { name: "GitLab CI/CD", icon: `${DEVICON}/gitlab/gitlab-original.svg` },
+      { name: "Swagger", icon: "https://cdn.simpleicons.org/swagger/85EA2D" },
+      { name: "Postman", icon: `${DEVICON}/postman/postman-original.svg` },
+      { name: "Figma", icon: `${DEVICON}/figma/figma-original.svg` },
+      { name: "Docker", icon: `${DEVICON}/docker/docker-original.svg` },
     ],
   },
 ];
 
-function SkillCard({ name, icon }: { name: string; icon: string }) {
+function SkillCard({ name, icon, badge }: Skill) {
   return (
     <article className="skill-card">
-      <img className="skill-card__icon" src={icon} alt={`${name} icon`} />
+      {icon ? (
+        <img className="skill-card__icon" src={icon} alt="" />
+      ) : (
+        <span className="skill-card__badge">{badge}</span>
+      )}
       <span className="skill-card__name">{name}</span>
     </article>
   );
 }
 
-function SkillsRow({
-  title,
-  skills,
-}: {
-  title: string;
-  skills: { name: string; icon: string }[];
-}) {
-  return (
-    <div className="skills__group">
-      <h3 className="skills__group-title">{title}</h3>
-      <div className="skills__slider">
-        <div className="skills__track">
-          {skills.map((skill, index) => (
-            <SkillCard key={`${skill.name}-${index}`} {...skill} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Skills() {
   const { t } = useTranslation();
-  const groupTitles = t("skills.groups", { returnObjects: true }) as string[];
-
-  const skillGroups = skillGroupData.map((group, i) => ({
-    ...group,
-    title: groupTitles[i] ?? "",
-  }));
 
   return (
     <section className="skills" id="skills">
@@ -124,8 +114,18 @@ export default function Skills() {
       </header>
 
       <div className="skills__groups">
-        {skillGroups.map((group) => (
-          <SkillsRow key={group.title} {...group} />
+        {skillGroupData.map((group, index) => (
+          <div
+            key={group.id}
+            className={`skills__group${group.wide ? " skills__group--wide" : ""}`}
+          >
+            <h3 className="skills__group-title">{t(`skills.groups.${group.id}`)}</h3>
+            <div className="skills__track">
+              {group.skills.map((skill) => (
+                <SkillCard key={skill.name} {...skill} />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
 

@@ -29,8 +29,8 @@ export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <>
-      <div className="hero" id="home">
+    <section className="hero-screen" id="home">
+      <div className="hero">
         <div className="hero__background">
           {decorations.map((item) => (
             <span
@@ -54,10 +54,10 @@ export default function Hero() {
           <h3 className="hero__title">{t('hero.title')}</h3>
           <h4 className="hero__subtitle">{t('hero.subtitle')}</h4>
           <p className="hero__description">{t('hero.description')}</p>
-          <Button text={t('hero.button')} type="button" />
+          <Button text={t('hero.button')} href="#projects" />
         </div>
         <div className="hero__image-wrap">
-          <img src={heroImage} alt="Hero" className="hero__image" />
+          <img src={heroImage} alt="" className="hero__image" />
         </div>
       </div>
       <div className="hero__code-strip">
@@ -73,6 +73,6 @@ export default function Hero() {
           {t('hero.available')} &gt;
         </span>
       </div>
-    </>
+    </section>
   );
 }

@@ -79,19 +79,41 @@
     "heading": "Проекты",
     "subtitle": "// то, что я создала",
     "filterAll": "Все",
-    "viewProject": "> смотреть проект",
+    "githubLink": "> GitHub",
+    "demoLink": "> сайт",
+    "inDevelopment": "В разработке",
     "github": "> больше на GitHub",
-    "descriptions": [
-      "Тревел-блог на Vue и TypeScript. Фотогалереи, интерактивные карты и Firebase-аутентификация.",
-      "Чат в реальном времени на Vue и Socket.IO. Личные сообщения, групповые чаты и статус онлайн.",
-      "Видеоплатформа на Vue и TypeScript. Загрузка видео, управление воспроизведением и профили пользователей.",
-      "Менеджер задач на Vue с Node.js-бэкендом. Drag-and-drop доски, сроки и командное взаимодействие."
-    ]
+    "items": {
+      "tudaSuda": {
+        "title": "Го туда",
+        "description": "Веб-приложение, которое помогает друзьям выбрать место встречи без споров и переписок. Список мест и людей, форма для голосования и итоговая таблица предпочтений."
+      },
+      "chatWidget": {
+        "title": "Chat Widget",
+        "description": "Универсальный React-виджет чата с паттерном Adapter для любой бэкенд-системы. TypeScript, хук useChat и готовый интерфейс ChatWindow."
+      },
+      "cutieBoard": {
+        "title": "CutieBoard",
+        "description": "Kanban-доска с розовой темой: несколько досок, шаблоны, drag-and-drop карточки, фильтры и сохранение в localStorage."
+      },
+      "btsFanSite": {
+        "title": "BTS Fan Site",
+        "description": "Фан-сайт BTS: участники, дискография и тематический интерфейс. Next.js, TypeScript и Tailwind CSS."
+      }
+    }
   },
   "skills": {
     "heading": "Навыки",
     "subtitle": "// мой стек",
-    "groups": ["Языки", "Фреймворки и библиотеки", "Инструменты и прочее"],
+    "groups": {
+      "frontend": "Frontend",
+      "frameworks": "Фреймворки",
+      "state": "Стейт",
+      "ui": "UI",
+      "backend": "Backend",
+      "build": "Сборка",
+      "tools": "Инструменты"
+    },
     "terminal": {
       "line1": "> Постоянно учусь...",
       "line2": "> Изучаю новые технологии и   совершенствую навыки каждый день."
@@ -107,7 +129,8 @@
     "message": "Сообщение",
     "messagePlaceholder": "Ваше сообщение...",
     "submit": "Отправить",
-    "socials": "Найти меня здесь"
+    "socials": "Найти меня здесь",
+    "resume": "Открыть резюме"
   },
   "footer": {
     "tagline": "Давайте создадим что-то удивительное вместе"

@@ -4,10 +4,9 @@
     width: min(92vw, 1800px);
     margin: 0 auto;
     min-height: calc(100svh - 70px);
-    padding: clamp(20px, 3vh, 42px) 0;
+    padding: clamp(20px, 3vh, 42px) clamp(8px, 1vw, 16px);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 
     &__header {
         display: flex;
@@ -41,32 +40,43 @@
     }
 
     &__groups {
-        display: flex;
-        flex-direction: column;
-        gap: clamp(18px, 2.4vh, 36px);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(12px, 1.4vw, 20px);
     }
 
     &__group {
         width: 100%;
         min-width: 0;
+        padding: clamp(14px, 1.4vw, 22px);
+        background: #fff;
+        border: 2px solid rgb(47 36 88 / 12%);
+        border-radius: 10px;
+        box-shadow: 2px 2px 0 rgb(139 112 232 / 8%);
+
+        &--wide {
+            grid-column: 1 / -1;
+        }
+    }
+
+    &__group-index {
+        margin: 0 0 4px;
+        font-family: $font-primary;
+        font-size: clamp(0.68rem, 0.72vw, 0.82rem);
+        color: #8b70e8;
     }
 
     &__group-title {
-        margin: 0 0 clamp(10px, 1.4vh, 18px);
+        margin: 0 0 clamp(12px, 1.2vh, 16px);
         font-size: clamp(1rem, 1.2vw, 1.4rem);
         font-weight: 600;
         color: $color-secondary;
     }
 
-    &__slider {
-        width: 100%;
-        overflow: hidden;
-    }
-
     &__track {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: clamp(16px, 1.5vw, 28px);
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(8px, 0.8vw, 12px);
     }
 
     &__learning {
@@ -122,34 +132,56 @@
 }
 
 .skill-card {
-    width: clamp(140px, 10vw, 190px);
-    max-width: 100%;
-    min-height: clamp(104px, 14vh, 150px);
-    padding: clamp(12px, 1.2vw, 20px);
+    min-height: 44px;
+    padding: 8px 12px;
     flex: 0 0 auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: clamp(14px, 1vw, 20px);
-    background: #fff;
-    border: 2px solid rgb(47 36 88 / 15%);
+    gap: 10px;
+    background: #f7f5ff;
+    border: 1.5px solid rgb(47 36 88 / 10%);
     border-radius: 8px;
-    box-shadow: 2px 2px 0 rgb(139 112 232 / 8%);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        border-color: #8b70e8;
+        box-shadow: 0 4px 12px rgb(139 112 232 / 16%);
+    }
 
     &__icon {
-        width: clamp(52px, 4vw, 76px);
-        height: clamp(52px, 4vw, 76px);
+        width: 28px;
+        height: 28px;
         object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    &__badge {
+        min-width: 28px;
+        height: 28px;
+        padding: 0 4px;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: #8b70e8;
+        color: #fff;
+        font-family: $font-primary;
+        font-size: 0.52rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: none;
+        white-space: nowrap;
     }
 
     &__name {
         font-family: $font-primary;
-        font-size: clamp(0.72rem, 0.75vw, 0.95rem);
+        font-size: clamp(0.72rem, 0.75vw, 0.88rem);
         font-weight: 600;
         color: $color-secondary;
-        text-align: center;
-        white-space: nowrap;
+        text-align: left;
+        line-height: 1.2;
     }
 }
 
@@ -166,7 +198,11 @@
         padding: clamp(50px, 6vw, 70px) 24px;
 
         &__groups {
-            gap: 44px;
+            grid-template-columns: 1fr;
+        }
+
+        &__group--wide {
+            grid-column: auto;
         }
 
         &__learning {
@@ -190,7 +226,7 @@
 @media (height <=760px) and (width >980px) {
     .skills {
         &__groups {
-            gap: 16px;
+            gap: 12px;
         }
 
         &__learning {
@@ -203,16 +239,6 @@
             padding-bottom: 16px;
         }
     }
-
-    .skill-card {
-        min-height: 96px;
-        padding: 12px;
-
-        &__icon {
-            width: 42px;
-            height: 42px;
-        }
-    }
 }
 
 @media (width <=768px) {
@@ -221,10 +247,6 @@
 
         &__header {
             margin-bottom: 36px;
-        }
-
-        &__groups {
-            gap: 36px;
         }
 
         &__learning {
@@ -246,17 +268,6 @@
             width: 95px;
             right: 20px;
             bottom: calc(100% - 18px);
-        }
-    }
-
-    .skill-card {
-        width: 100%;
-        min-height: 130px;
-        padding: 16px;
-
-        &__icon {
-            width: 50px;
-            height: 50px;
         }
     }
 }
@@ -294,14 +305,6 @@
     }
 
     .skill-card {
-        width: 100%;
-        min-height: 120px;
-
-        &__icon {
-            width: 46px;
-            height: 46px;
-        }
-
         &__name {
             font-size: 0.68rem;
         }

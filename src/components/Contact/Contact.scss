@@ -117,6 +117,7 @@
         h3 {
             margin: 0;
             font-size: 22px;
+            color: $color-secondary;
         }
     }
 
@@ -145,6 +146,11 @@
             svg {
                 width: 28px;
                 height: 28px;
+            }
+
+            svg text {
+                font-family: Arial, Helvetica, sans-serif;
+                text-transform: none;
             }
         }
     }
@@ -241,6 +247,11 @@
             border: 2px solid rgb(47 36 88 / 12%);
             border-radius: 8px;
             background: #faf9ff;
+            color: $color-secondary;
+
+            label span {
+                text-shadow: none;
+            }
         }
 
         &__form-content {

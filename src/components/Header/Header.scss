@@ -79,16 +79,32 @@
 
 @media (width <= 820px) {
     .header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "logo lang"
+            "nav nav";
         height: auto;
         min-height: 70px;
-        flex-wrap: wrap;
         gap: 10px 16px;
         padding: 12px 18px;
 
+        &__logo {
+            grid-area: logo;
+            align-self: center;
+        }
+
+        &__lang-toggle {
+            grid-area: lang;
+            font-size: 11px;
+            padding: 3px 8px;
+        }
+
         &__nav {
+            grid-area: nav;
             width: 100%;
             justify-content: space-between;
-            gap: 8px;
+            gap: 10px;
             overflow-x: auto;
             padding-bottom: 2px;
             font-size: 13px;
@@ -97,11 +113,6 @@
             &::-webkit-scrollbar {
                 display: none;
             }
-        }
-
-        &__lang-toggle {
-            font-size: 11px;
-            padding: 3px 8px;
         }
     }
 }
@@ -116,7 +127,7 @@
 
         &__nav {
             justify-content: flex-start;
-            gap: 16px;
+            gap: 12px;
             font-size: 12px;
         }
     }
