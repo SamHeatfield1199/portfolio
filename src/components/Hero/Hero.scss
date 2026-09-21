@@ -10,12 +10,12 @@
 .hero {
     flex: 1 1 auto;
     min-height: 0;
-    margin: 0 auto;
-    width: min(100%, 1800px);
+    margin: 0;
+    width: 100%;
     padding: clamp(12px, 2vh, 32px) 0 0 clamp(24px, 5vw, 80px);
     display: grid;
     align-items: stretch;
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 48vw);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(16px, 3vw, 64px);
     position: relative;
 
@@ -27,7 +27,7 @@
     }
 
     &__content,
-    &__image {
+    &__image-wrap {
         position: relative;
         z-index: 1;
     }
@@ -75,6 +75,7 @@
         min-width: 0;
         margin-left: clamp(0px, 7vw, 180px);
         align-self: center;
+        z-index: 2;
     }
 
     &__hero {
@@ -107,21 +108,20 @@
 
     &__image-wrap {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: flex-end;
         min-width: 0;
         min-height: 0;
-        overflow: hidden;
+        overflow: visible;
     }
 
     &__image {
-        transform: translateX(clamp(-150px, -8vw, -24px));
         width: auto;
-        max-width: min(850px, 50vw);
         height: auto;
+        max-width: min(62vw, 900px);
         max-height: 100%;
         object-fit: contain;
-        object-position: bottom center;
+        object-position: right bottom;
     }
 
     &__code-strip {
@@ -184,10 +184,14 @@
             margin-left: 0;
         }
 
+        &__image-wrap {
+            justify-content: center;
+        }
+
         &__image {
             width: auto;
             max-width: min(100%, 420px);
-            transform: none;
+            object-position: bottom center;
             margin-right: auto;
             margin-left: auto;
         }
