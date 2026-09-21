@@ -33,16 +33,11 @@ Preview the production build locally:
 npm run preview
 ```
 
-The production build is served from `/portfolio/` (GitHub Pages project URL). After `npm run dev` or `npm run preview`, open `http://localhost:5173/portfolio/`.
-
 ## Deploy (GitHub Pages)
 
 The site is published automatically on every push to `main`:
 
-https://samheatfield1199.github.io/portfolio/
-
-In the GitHub repo go to **Settings → Pages** and set **Source** to **GitHub Actions**. The workflow `.github/workflows/deploy.yml` builds the app and deploys the `dist` folder.
-
+https://samheatfield.dev
 ## Linting
 
 Check code and styles:

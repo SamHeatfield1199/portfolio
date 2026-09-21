@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://samheatfield1199.github.io/portfolio/",
+  "homepage": "https://samheatfield.dev/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
