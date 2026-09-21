@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import aboutImage from "@/assets/images/about.png";
 import aboutMe from "@/assets/icons/about.svg";
 import residence from "@/assets/icons/residence.svg";
-import hobbies from "@/assets/icons/hobbies.svg";
+import hobbies from "@/assets/icons/Hobbies.svg";
 import codeStyle from "@/assets/icons/codeStyle.svg";
-import growth from "@/assets/icons/growth.svg";
+import growth from "@/assets/icons/Growth.svg";
 import "./About.scss";
 
 export default function About() {

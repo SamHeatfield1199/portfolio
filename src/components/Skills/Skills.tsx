@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import "./Skills.scss";
 import V from "@/assets/icons/V.svg";
-import Stack from "@/assets/icons/stack.svg";
+import Stack from "@/assets/icons/Stack.svg";
 
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
