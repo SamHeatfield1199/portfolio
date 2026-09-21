@@ -114,7 +114,7 @@ export default function Skills() {
       </header>
 
       <div className="skills__groups">
-        {skillGroupData.map((group, index) => (
+        {skillGroupData.map((group) => (
           <div
             key={group.id}
             className={`skills__group${group.wide ? " skills__group--wide" : ""}`}
