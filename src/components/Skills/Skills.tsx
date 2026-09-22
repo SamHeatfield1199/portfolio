@@ -91,7 +91,13 @@ function SkillCard({ name, icon, badge }: Skill) {
   return (
     <article className="skill-card">
       {icon ? (
-        <img className="skill-card__icon" src={icon} alt="" />
+        <img
+          className="skill-card__icon"
+          src={icon}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
       ) : (
         <span className="skill-card__badge">{badge}</span>
       )}

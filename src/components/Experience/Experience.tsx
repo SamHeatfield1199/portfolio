@@ -11,7 +11,7 @@ import rocketIcon from "@/assets/icons/rocket.svg";
 import stabilityIcon from "@/assets/icons/stability.svg";
 import trophyIcon from "@/assets/icons/trophy.svg";
 import usersIcon from "@/assets/icons/users.svg";
-import experienceImage from "@/assets/images/experience.png";
+import experienceImage from "@/assets/images/experience.webp";
 import "./Experience.scss";
 
 const detailIcons = [cartIcon, usersIcon, methodologyIcon, environmentIcon];
@@ -166,6 +166,10 @@ export default function Experience() {
             src={experienceImage}
             alt="Workspace and e-commerce project illustration"
             className="experience__image"
+            width={1100}
+            height={548}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -256,6 +260,8 @@ export default function Experience() {
                         src={item.icon}
                         alt=""
                         aria-hidden="true"
+                        loading="lazy"
+                        decoding="async"
                       />
                       {item.name}
                     </span>

@@ -113,6 +113,8 @@ function ProjectCard({
           }`}
           src={project.image}
           alt={`${title} preview`}
+          loading="lazy"
+          decoding="async"
         />
         {project.inDevelopment && (
           <span className="project-card__banner">{inDevelopmentLabel}</span>
@@ -225,6 +227,8 @@ export default function Projects() {
             src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
           />
         </a>
       </footer>

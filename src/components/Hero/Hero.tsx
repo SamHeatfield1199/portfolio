@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import heroImage from "@/assets/images/hero.png";
+import heroImage from "@/assets/images/hero.webp";
 import "./Hero.scss";
 import Button from "../Button/Button";
 
@@ -57,7 +57,15 @@ export default function Hero() {
           <Button text={t('hero.button')} href="#projects" />
         </div>
         <div className="hero__image-wrap">
-          <img src={heroImage} alt="" className="hero__image" />
+          <img
+            src={heroImage}
+            alt=""
+            className="hero__image"
+            width={900}
+            height={685}
+            decoding="async"
+            fetchPriority="high"
+          />
         </div>
       </div>
       <div className="hero__code-strip">

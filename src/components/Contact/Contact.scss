@@ -49,7 +49,7 @@
 
     &__form-wrapper {
         position: relative;
-        width: min(100%, 560px, calc(min(62svh, 560px) * 971 / 1220));
+        width: min(100%, 560px, calc(min(62svh, 560px) * 446 / 560));
         flex-shrink: 0;
         margin-inline: auto;
     }
@@ -297,7 +297,7 @@
         }
 
         &__form-wrapper {
-            width: min(100%, 520px, calc(min(58svh, 520px) * 971 / 1220));
+            width: min(100%, 520px, calc(min(58svh, 520px) * 446 / 560));
         }
 
         &__image {
@@ -314,7 +314,7 @@
 @media (height <=760px) and (width >900px) {
     .contact {
         &__form-wrapper {
-            width: min(100%, 520px, calc(min(54svh, 520px) * 971 / 1220));
+            width: min(100%, 520px, calc(min(54svh, 520px) * 446 / 560));
         }
 
         &__image {

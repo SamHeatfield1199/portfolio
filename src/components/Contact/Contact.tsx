@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import "./Contact.scss";
-import contact from "@/assets/images/contact.png";
+import contact from "@/assets/images/contact.webp";
 import contactIcon from "@/assets/icons/contactIcon.svg";
-import frame from "@/assets/images/frame.png";
+import frame from "@/assets/images/frame.webp";
 import Button from "../Button/Button";
 
 const recipientEmail = "asmirnova1199@gmail.com";
@@ -196,7 +196,16 @@ export default function Contact() {
 
       <div className="contact__content">
         <div className="contact__form-wrapper">
-          <img className="contact__frame" src={frame} alt="" aria-hidden="true" />
+          <img
+            className="contact__frame"
+            src={frame}
+            alt=""
+            aria-hidden="true"
+            width={446}
+            height={560}
+            loading="lazy"
+            decoding="async"
+          />
           <form className="contact__form" onSubmit={handleSubmit}>
             <div className="contact__form-content">
               <label>
@@ -324,7 +333,16 @@ export default function Contact() {
             </div>
           </form>
         </div>
-        <img src={contact} alt="Contact" className="contact__image" aria-hidden="true" />
+        <img
+          src={contact}
+          alt="Contact"
+          className="contact__image"
+          width={393}
+          height={560}
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
       </div>
 
       <div className="contact__socials">
@@ -341,6 +359,8 @@ export default function Contact() {
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
               alt=""
               aria-hidden="true"
+              loading="lazy"
+              decoding="async"
             />
           </a>
 

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import aboutImage from "@/assets/images/about.png";
+import aboutImage from "@/assets/images/about.webp";
 import aboutMe from "@/assets/icons/about.svg";
 import residence from "@/assets/icons/residence.svg";
 import hobbies from "@/assets/icons/Hobbies.svg";
@@ -13,7 +13,15 @@ export default function About() {
   return (
     <section className="about" id="about">
       <div className="about__image-wrap">
-        <img src={aboutImage} alt="About Me" className="about__image" />
+        <img
+          src={aboutImage}
+          alt="About Me"
+          className="about__image"
+          width={700}
+          height={563}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div className="about__content">

@@ -43,6 +43,10 @@
         left: var(--left);
         animation: float var(--duration) ease-in-out infinite;
         animation-delay: var(--delay);
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
     }
 
     @keyframes float {
