@@ -42,4 +42,21 @@
             inset 2px 2px 0 #9f76dc,
             2px 2px 0 #2d2346;
     }
+
+    &:disabled,
+    &--disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+
+        &:hover,
+        &:active {
+            background: #caa6ff;
+            transform: none;
+            box-shadow:
+                inset 2px 2px 0 #e9d7ff,
+                inset -2px -2px 0 #9f76dc,
+                4px 4px 0 #2d2346;
+        }
+    }
 }

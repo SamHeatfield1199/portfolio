@@ -129,6 +129,13 @@
     "emailPlaceholder": "you@example.com",
     "message": "Message",
     "messagePlaceholder": "Your message...",
+    "attach": "Attach files",
+    "removeFile": "Remove file",
+    "tooManyFiles": "You can attach up to {{count}} files",
+    "fileTooLarge": "Each file must be under 5 MB",
+    "sending": "Sending...",
+    "success": "Message sent. Thank you!",
+    "error": "Could not send attachments. Remove files to send from your mail app, or try again.",
     "submit": "Send message",
     "socials": "Find me here",
     "resume": "Open resume"

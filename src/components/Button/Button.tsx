@@ -1,9 +1,11 @@
+import type { MouseEvent } from "react";
 import "./Button.scss";
 
 type ButtonProps = {
   text: string;
   type?: "button" | "submit" | "reset";
   href?: string;
+  disabled?: boolean;
 };
 
 function ButtonContent({ text }: { text: string }) {
@@ -30,17 +32,31 @@ function ButtonContent({ text }: { text: string }) {
   );
 }
 
-export default function Button({ text, type = "button", href }: ButtonProps) {
+export default function Button({ text, type = "button", href, disabled }: ButtonProps) {
+  const className = disabled ? "pixel-button pixel-button--disabled" : "pixel-button";
+
   if (href) {
+    const blockNavigation = (event: MouseEvent<HTMLAnchorElement>) => {
+      if (disabled) {
+        event.preventDefault();
+      }
+    };
+
     return (
-      <a className="pixel-button" href={href}>
+      <a
+        className={className}
+        href={href}
+        aria-disabled={disabled || undefined}
+        tabIndex={disabled ? -1 : undefined}
+        onClick={blockNavigation}
+      >
         <ButtonContent text={text} />
       </a>
     );
   }
 
   return (
-    <button className="pixel-button" type={type}>
+    <button className={className} type={type} disabled={disabled}>
       <ButtonContent text={text} />
     </button>
   );
