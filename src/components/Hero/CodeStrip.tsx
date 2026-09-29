@@ -14,10 +14,10 @@ export default function CodeStrip() {
 };`}
       </pre>
       <span className="hero-status">
-        <span className="hero-status__row">
-          <span className="hero-status-dot" />
+        <a className="hero-status__row" href="#contact">
+          <span className="hero-status-dot" aria-hidden="true" />
           {t("hero.available")} &gt;
-        </span>
+        </a>
         <span className="hero-status__tz">{t("hero.timezone")}</span>
       </span>
     </div>
