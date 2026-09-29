@@ -120,7 +120,7 @@
       "javascript": "what the frontend still runs on.",
       "html5": "semantic, accessible markup.",
       "scss": "styles for the product interfaces.",
-      "vue3": "the main framework at work: cart and checkout.",
+      "vue3": "the main framework at work.",
       "react": "side projects: the chat widget, CutieBoard, and more.",
       "nuxt": "Vue apps with server-side rendering.",
       "nextjs": "Go Tuda and the BTS fan site are built with Next.js.",
