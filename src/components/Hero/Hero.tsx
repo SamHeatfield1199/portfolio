@@ -52,7 +52,10 @@ export default function Hero() {
         </div>
         <div className="hero__content">
           <h3 className="hero__hero">{t('hero.greeting')}</h3>
-          <h3 className="hero__title">{t('hero.title')}</h3>
+          <h3 className="hero__title">
+            {t('hero.title')}
+            <span className="hero__title-cursor" aria-hidden="true">▌</span>
+          </h3>
           <h4 className="hero__subtitle">{t('hero.subtitle')}</h4>
           <p className="hero__description">{t('hero.description')}</p>
           <Button text={t('hero.button')} href="#projects" />

@@ -49,6 +49,12 @@
         }
     }
 
+    @keyframes hero-cursor-blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
     @keyframes float {
         0% {
             transform: translate(0, 0) rotate(0deg);
@@ -94,6 +100,16 @@
         font-weight: 600;
         color: $color-secondary;
         margin: 0;
+    }
+
+    &__title-cursor {
+        display: inline-block;
+        margin-left: 0.15em;
+        animation: hero-cursor-blink 1s steps(1) infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
     }
 
     &__subtitle {
