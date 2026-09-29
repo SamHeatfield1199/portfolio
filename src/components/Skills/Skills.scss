@@ -77,17 +77,23 @@
         display: flex;
         flex-wrap: wrap;
         gap: clamp(8px, 0.8vw, 12px);
+
+        &:hover .skill-card:not(:hover):not(.is-active),
+        &.is-engaged .skill-card:not(.is-active) {
+            opacity: 0.45;
+        }
     }
 
     &__learning {
-        position: relative;
-        width: 100%;
-        margin-top: 5vw;
+        display: contents;
     }
 
     &__terminal {
-        position: relative;
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
         width: 100%;
+        margin-top: 5vw;
         min-height: clamp(104px, 14vh, 150px);
         display: flex;
         flex-direction: column;
@@ -114,6 +120,18 @@
         }
     }
 
+    &__terminal-live {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
     &__terminal-cursor {
         position: absolute;
         right: clamp(20px, 2vw, 32px);
@@ -133,21 +151,37 @@
 
 .skill-card {
     min-height: 44px;
+    margin: 0;
     padding: 8px 12px;
     flex: 0 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    appearance: none;
     background: #f7f5ff;
     border: 1.5px solid rgb(47 36 88 / 10%);
     border-radius: 8px;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
 
-    &:hover {
-        transform: translateY(-2px);
+    &:hover,
+    &.is-active {
+        transform: translateY(-4px);
         border-color: #8b70e8;
-        box-shadow: 0 4px 12px rgb(139 112 232 / 16%);
+        box-shadow: 0 6px 16px rgb(139 112 232 / 22%);
+
+        .skill-card__icon,
+        .skill-card__badge {
+            transform: scale(1.12);
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid $color-focus;
+        outline-offset: 2px;
     }
 
     &__icon {
@@ -155,6 +189,7 @@
         height: 28px;
         object-fit: contain;
         flex-shrink: 0;
+        transition: transform 0.2s;
     }
 
     &__badge {
@@ -173,6 +208,7 @@
         letter-spacing: 0.02em;
         text-transform: none;
         white-space: nowrap;
+        transition: transform 0.2s;
     }
 
     &__name {
@@ -191,6 +227,14 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .skill-card,
+    .skill-card__icon,
+    .skill-card__badge {
+        transition: none;
+    }
+}
+
 @media (width <=980px) {
     .skills {
         width: 100%;
@@ -205,11 +249,8 @@
             grid-column: auto;
         }
 
-        &__learning {
-            margin-top: 100px;
-        }
-
         &__terminal {
+            margin-top: 100px;
             min-height: 140px;
             padding: 24px;
             padding-right: 150px;
@@ -229,11 +270,8 @@
             gap: 12px;
         }
 
-        &__learning {
-            margin-top: 22px;
-        }
-
         &__terminal {
+            margin-top: 22px;
             min-height: 96px;
             padding-top: 16px;
             padding-bottom: 16px;
@@ -249,11 +287,8 @@
             margin-bottom: 36px;
         }
 
-        &__learning {
-            margin-top: 90px;
-        }
-
         &__terminal {
+            margin-top: 90px;
             min-height: 130px;
             padding: 20px;
             padding-right: 110px;
@@ -276,11 +311,8 @@
     .skills {
         padding: 32px 12px;
 
-        &__learning {
-            margin-top: 75px;
-        }
-
         &__terminal {
+            margin-top: 75px;
             min-height: 150px;
             padding: 20px 16px;
             padding-right: 16px;

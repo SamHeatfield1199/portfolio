@@ -9,7 +9,7 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 button,
@@ -31,7 +31,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   padding-top: 70px;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img,
