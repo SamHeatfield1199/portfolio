@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import heroImage from "@/assets/images/hero.webp";
+import { CHARACTER_SRC } from "@/assets/character";
 
 const READY_TIMEOUT_MS = 8000;
 
@@ -12,8 +13,8 @@ function whenFontsReady() {
   return document.fonts.ready.then(() => undefined).catch(() => undefined);
 }
 
-// Функция для ожидания декодирования изображения героя
-function whenHeroDecoded() {
+// Функция для ожидания декодирования изображения
+function whenImageDecoded(src: string) {
   return new Promise<void>((resolve) => {
     const image  = new Image();
     const finish = () => resolve();
@@ -21,14 +22,14 @@ function whenHeroDecoded() {
     image.onerror = finish;
 
     if (typeof image.decode === "function") {
-      image.src = heroImage;
+      image.src = src;
       image.decode().then(finish).catch(finish);
 
       return;
     }
 
     image.onload = finish;
-    image.src    = heroImage;
+    image.src    = src;
   });
 }
 
@@ -44,7 +45,11 @@ export function useHeroReady() {
       }
     }, READY_TIMEOUT_MS);
 
-    Promise.all([whenFontsReady(), whenHeroDecoded()]).then(() => {
+    Promise.all([
+      whenFontsReady(),
+      whenImageDecoded(heroImage),
+      whenImageDecoded(CHARACTER_SRC),
+    ]).then(() => {
       if (!cancelled) {
         setReady(true);
       }

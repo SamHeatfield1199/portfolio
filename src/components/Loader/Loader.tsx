@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import character from "@/assets/icons/V.svg";
+import { CHARACTER_SRC } from "@/assets/character";
 import CodeStrip from "../Hero/CodeStrip";
 import Header from "../Header/Header";
 import "./Loader.scss";
 
-const STAGES        = ["idle", "sleep1", "sleep2", "wake", "sparkle"] as const;
-const SPARKLE_STAGE = STAGES.length - 1;
-const FRAME_MS      = 700;
-const FADE_MS       = 400;
+const STAGES                 = ["idle", "sleep1", "sleep2", "wake", "sparkle"] as const;
+const SPARKLE_STAGE          = STAGES.length - 1;
+const FRAME_MS               = 700;
+const FADE_MS                = 400;
+const CHARACTER_TIMEOUT_MS   = 8000;
 
 type LoaderProps = {
   ready: boolean;
@@ -36,13 +37,27 @@ function usePrefersReducedMotion() {
 
 // Компонент загрузки
 export default function Loader({ ready, onDone }: LoaderProps) {
-  const { t }                 = useTranslation();
-  const reducedMotion         = usePrefersReducedMotion();
-  const [stage, setStage]     = useState(0);
-  const [leaving, setLeaving] = useState(false);
-  const onDoneRef             = useRef(onDone);
+  const { t }                   = useTranslation();
+  const reducedMotion           = usePrefersReducedMotion();
+  const [stage, setStage]       = useState(0);
+  const [leaving, setLeaving]   = useState(false);
+  const [characterVisible, setCharacterVisible] = useState(false);
+  const [characterFailed, setCharacterFailed]   = useState(false);
+  const onDoneRef               = useRef(onDone);
+  const characterRef            = useRef<HTMLImageElement>(null);
+  const characterVisibleRef     = useRef(false);
 
-  if (ready && !leaving && (reducedMotion || stage === SPARKLE_STAGE)) {
+  const showCharacter = () => {
+    characterVisibleRef.current = true;
+    setCharacterVisible(true);
+  };
+
+  if (
+    ready &&
+    !leaving &&
+    (characterVisible || characterFailed) &&
+    (reducedMotion || characterFailed || stage === SPARKLE_STAGE)
+  ) {
     setLeaving(true);
   }
 
@@ -61,7 +76,26 @@ export default function Loader({ ready, onDone }: LoaderProps) {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion || leaving) {
+    const image = characterRef.current;
+
+    if (image?.complete && image.naturalWidth > 0) {
+      characterVisibleRef.current = true;
+      setCharacterVisible(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      if (!characterVisibleRef.current) {
+        setCharacterFailed(true);
+      }
+    }, CHARACTER_TIMEOUT_MS);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion || leaving || !characterVisible) {
       return;
     }
 
@@ -70,7 +104,7 @@ export default function Loader({ ready, onDone }: LoaderProps) {
     }, FRAME_MS);
 
     return () => window.clearInterval(timer);
-  }, [reducedMotion, leaving]);
+  }, [reducedMotion, leaving, characterVisible]);
 
   useEffect(() => {
     if (!leaving) {
@@ -78,7 +112,7 @@ export default function Loader({ ready, onDone }: LoaderProps) {
     }
 
     const timer = window.setTimeout(() => onDoneRef.current(), FADE_MS);
-    
+
     return () => window.clearTimeout(timer);
   }, [leaving]);
 
@@ -86,6 +120,7 @@ export default function Loader({ ready, onDone }: LoaderProps) {
     <div
       className={`loader${leaving ? " loader--leaving" : ""}`}
       data-stage={STAGES[stage]}
+      data-character={characterVisible ? "ready" : "loading"}
       role="status"
       aria-live="polite"
     >
@@ -93,7 +128,16 @@ export default function Loader({ ready, onDone }: LoaderProps) {
       <Header logoOnly />
       <div className="loader__stage">
         <div className="loader__scene">
-          <img className="loader__character" src={character} alt="" />
+          <img
+            ref={characterRef}
+            className="loader__character"
+            src={CHARACTER_SRC}
+            alt=""
+            decoding="sync"
+            fetchPriority="high"
+            onLoad={showCharacter}
+            onError={() => setCharacterFailed(true)}
+          />
           <span className="loader__z loader__z--one" aria-hidden="true">
             z
           </span>

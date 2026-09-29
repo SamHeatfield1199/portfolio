@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import "./Skills.scss";
-import V from "@/assets/icons/V.svg";
+import { CHARACTER_SRC } from "@/assets/character";
 import Stack from "@/assets/icons/Stack.svg";
 
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
@@ -141,7 +141,7 @@ export default function Skills() {
           <p>{t("skills.terminal.line2")}</p>
           <span className="skills__terminal-cursor">_</span>
         </div>
-        <img className="skills__V" src={V} alt="" />
+        <img className="skills__V" src={CHARACTER_SRC} alt="" />
       </div>
     </section>
   );

@@ -44,6 +44,12 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &[data-character="ready"] &__character {
+    opacity: 1;
   }
 
   &__z,
@@ -75,9 +81,9 @@
     }
   }
 
-  &[data-stage="sleep1"] &__z--one,
-  &[data-stage="sleep2"] &__z--one,
-  &[data-stage="sleep2"] &__z--two {
+  &[data-character="ready"][data-stage="sleep1"] &__z--one,
+  &[data-character="ready"][data-stage="sleep2"] &__z--one,
+  &[data-character="ready"][data-stage="sleep2"] &__z--two {
     opacity: 1;
   }
 
@@ -127,9 +133,9 @@
     }
   }
 
-  &[data-stage="idle"] &__eyes,
-  &[data-stage="sleep1"] &__eyes,
-  &[data-stage="sleep2"] &__eyes {
+  &[data-character="ready"][data-stage="idle"] &__eyes,
+  &[data-character="ready"][data-stage="sleep1"] &__eyes,
+  &[data-character="ready"][data-stage="sleep2"] &__eyes {
     opacity: 1;
   }
 
@@ -167,7 +173,7 @@
     }
   }
 
-  &[data-stage="sparkle"] &__spark {
+  &[data-character="ready"][data-stage="sparkle"] &__spark {
     opacity: 1;
   }
 }
@@ -175,6 +181,10 @@
 @media (prefers-reduced-motion: reduce) {
   .loader {
     transition: none;
+
+    &__character {
+      transition: none;
+    }
 
     &__z,
     &__eyes,
