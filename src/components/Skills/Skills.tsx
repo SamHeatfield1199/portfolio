@@ -4,15 +4,11 @@ import { useTranslation } from "react-i18next";
 import "./Skills.scss";
 import { CHARACTER_SRC } from "@/assets/character";
 import Stack from "@/assets/icons/Stack.svg";
+import SkillCard from "./SkillCard";
+import type { Skill } from "./SkillCard";
+import SkillCarousel from "./SkillCarousel/SkillCarousel";
 
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
-
-type Skill = {
-  id: string;
-  name: string;
-  icon?: string;
-  badge?: string;
-};
 
 type SkillGroup = {
   id: "frontend" | "frameworks" | "state" | "ui" | "backend" | "build" | "tools";
@@ -133,58 +129,13 @@ function useTypewriter(text: string | null) {
   return output;
 }
 
-type SkillCardProps = Skill & {
-  active: boolean;
-  pinned: boolean;
-  onHover: (id: string) => void;
-  onFocus: (id: string) => void;
-  onBlur: (event: FocusEvent<HTMLButtonElement>) => void;
-  onToggle: (id: string) => void;
-};
-
-function SkillCard({
-  id,
-  name,
-  icon,
-  badge,
-  active,
-  pinned,
-  onHover,
-  onFocus,
-  onBlur,
-  onToggle,
-}: SkillCardProps) {
-  return (
-    <button
-      type="button"
-      className={`skill-card${active ? " is-active" : ""}`}
-      aria-pressed={pinned ? true : undefined}
-      onMouseEnter={() => onHover(id)}
-      onFocus={() => onFocus(id)}
-      onBlur={onBlur}
-      onClick={() => onToggle(id)}
-    >
-      {icon ? (
-        <img
-          className="skill-card__icon"
-          src={icon}
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
-      ) : (
-        <span className="skill-card__badge" aria-hidden="true">{badge}</span>
-      )}
-      <span className="skill-card__name">{name}</span>
-    </button>
-  );
-}
+const allSkills = skillGroupData.flatMap((group) => group.skills);
 
 export default function Skills() {
   const { t } = useTranslation();
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [focusedId, setFocusedId] = useState<string | null>(null);
-  const [pinnedId, setPinnedId]   = useState<string | null>(null);
+  const [pinnedId, setPinnedId] = useState<string | null>(null);
 
   const activeId    = pinnedId ?? focusedId ?? hoveredId;
   const activeSkill = activeId ? skillsById.get(activeId) ?? null : null;
@@ -234,7 +185,12 @@ export default function Skills() {
 
   const onToggle = (id: string) => {
     if (pointerCanHover()) return;
-    
+
+    setFocusedId(null);
+    setPinnedId((current) => (current === id ? null : id));
+  };
+
+  const onCarouselSelect = (id: string) => {
     setFocusedId(null);
     setPinnedId((current) => (current === id ? null : id));
   };
@@ -282,6 +238,18 @@ export default function Skills() {
           );
         })}
       </div>
+
+      <SkillCarousel
+        skills={allSkills}
+        activeId={activeId}
+        pinnedId={pinnedId}
+        label={t("skills.heading")}
+        onHover={onHover}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onSelect={onCarouselSelect}
+        onLeave={() => setHoveredId(null)}
+      />
 
       <div className="skills__learning">
         <div className="skills__terminal">

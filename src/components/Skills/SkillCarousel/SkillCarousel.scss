@@ -1,0 +1,55 @@
+.skill-carousel {
+    display: none;
+    overflow: auto hidden;
+    padding-block: 16px 22px;
+    margin-block: -16px -22px;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    scroll-behavior: auto;
+    touch-action: pan-y;
+    user-select: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__track {
+        display: flex;
+        width: max-content;
+    }
+
+    &__set {
+        display: flex;
+        flex: 0 0 auto;
+        gap: 10px;
+        padding-right: 10px;
+    }
+
+    .skill-card {
+        white-space: nowrap;
+
+        > * {
+            pointer-events: none;
+        }
+    }
+
+    &.is-dragging,
+    &.is-dragging .skill-card {
+        cursor: grabbing;
+    }
+}
+
+@media (width <=768px) {
+    .skill-carousel {
+        display: block;
+        margin-inline: -16px;
+        padding-inline: 16px;
+    }
+}
+
+@media (width <=480px) {
+    .skill-carousel {
+        margin-inline: -12px;
+        padding-inline: 12px;
+    }
+}
