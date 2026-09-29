@@ -142,5 +142,8 @@
   },
   "footer": {
     "tagline": "Let's build something amazing together"
+  },
+  "loader": {
+    "loading": "Loading"
   }
 }

@@ -190,12 +190,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(47 36 88 / 3%);
+    aspect-ratio: 1100 / 548;
+    background: #f4f0ff;
   }
 
   &__image {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     object-fit: cover;
     image-rendering: pixelated;

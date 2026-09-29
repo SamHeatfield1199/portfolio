@@ -74,6 +74,13 @@
     &__lang-toggle-divider {
         opacity: 0.3;
     }
+
+    &--logo-only {
+        position: relative;
+        z-index: auto;
+        width: 100%;
+        flex-shrink: 0;
+    }
 }
 
 @media (width <= 820px) {
@@ -113,6 +120,14 @@
                 display: none;
             }
         }
+
+        &--logo-only {
+            display: flex;
+            height: 70px;
+            min-height: 70px;
+            gap: 0;
+            padding: 0 18px;
+        }
     }
 }
 
@@ -128,6 +143,11 @@
             justify-content: flex-start;
             gap: 12px;
             font-size: 12px;
+        }
+
+        &--logo-only {
+            height: 70px;
+            padding: 0 14px;
         }
     }
 }

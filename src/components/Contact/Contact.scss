@@ -50,6 +50,7 @@
     &__form-wrapper {
         position: relative;
         width: min(100%, 560px, calc(min(62svh, 560px) * 446 / 560));
+        aspect-ratio: 446 / 560;
         flex-shrink: 0;
         margin-inline: auto;
     }
@@ -57,7 +58,9 @@
     &__frame {
         display: block;
         width: 100%;
-        height: auto;
+        height: 100%;
+        object-fit: fill;
+        background: #f4f0ff;
     }
 
     &__form {
@@ -231,9 +234,13 @@
     }
 
     &__image {
-        max-height: min(62svh, 560px);
-        width: min(36vw, 520px);
+        display: block;
+        flex-shrink: 0;
+        width: min(36vw, 520px, calc(min(62svh, 560px) * 393 / 560));
         height: auto;
+        aspect-ratio: 393 / 560;
+        object-fit: contain;
+        background: #f4f0ff;
     }
 
     &__socials {
@@ -318,7 +325,7 @@
         }
 
         &__image {
-            max-height: 54svh;
+            width: min(36vw, 520px, calc(54svh * 393 / 560));
         }
 
         &__form {
@@ -364,6 +371,7 @@
 
         &__form-wrapper {
             width: min(100%, 420px);
+            aspect-ratio: auto;
         }
 
         &__frame {

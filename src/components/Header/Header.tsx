@@ -1,7 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import './Header.scss';
 
-export default function Header() {
+type HeaderProps = {
+    logoOnly?: boolean;
+};
+
+export default function Header({ logoOnly = false }: HeaderProps) {
     const { t, i18n } = useTranslation();
 
     const isRu = i18n.language.startsWith('ru');
@@ -9,6 +13,14 @@ export default function Header() {
     const toggleLanguage = () => {
         i18n.changeLanguage(isRu ? 'en' : 'ru');
     };
+
+    if (logoOnly) {
+        return (
+            <header className="header header--logo-only">
+                <div className="header__logo">{"<SamHeatfield/>"}</div>
+            </header>
+        );
+    }
 
     return (
         <header className="header">

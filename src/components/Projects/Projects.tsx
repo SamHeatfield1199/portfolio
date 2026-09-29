@@ -18,6 +18,8 @@ type StaticProject = {
   id: "tudaSuda" | "chatWidget" | "cutieBoard" | "btsFanSite";
   image: string;
   imageKind: "screenshot" | "illustration";
+  width: number;
+  height: number;
   tags: { label: string; variant: TagVariant }[];
   filterTags: string[];
   githubUrl: string;
@@ -40,6 +42,8 @@ const staticProjects: StaticProject[] = [
     demoUrl: "https://tuda-suda-ten.vercel.app/",
     image: goTudaImg,
     imageKind: "screenshot",
+    width: 841,
+    height: 906,
   },
   {
     id: "chatWidget",
@@ -52,6 +56,8 @@ const staticProjects: StaticProject[] = [
     githubUrl: "https://github.com/SamHeatfield1199/chat-widget",
     image: chatAppImg,
     imageKind: "illustration",
+    width: 160,
+    height: 160,
   },
   {
     id: "cutieBoard",
@@ -65,6 +71,8 @@ const staticProjects: StaticProject[] = [
     demoUrl: "https://samheatfield1199.github.io/cutieBoard/",
     image: cutieBoardImg,
     imageKind: "screenshot",
+    width: 1024,
+    height: 485,
   },
   {
     id: "btsFanSite",
@@ -77,6 +85,8 @@ const staticProjects: StaticProject[] = [
     githubUrl: "https://github.com/SamHeatfield1199/bts-fan-site",
     image: btsFanSiteImg,
     imageKind: "screenshot",
+    width: 474,
+    height: 472,
     inDevelopment: true,
   },
 ];
@@ -113,6 +123,8 @@ function ProjectCard({
           }`}
           src={project.image}
           alt={`${title} preview`}
+          width={project.width}
+          height={project.height}
           loading="lazy"
           decoding="async"
         />
