@@ -4,7 +4,6 @@ import SkillCard from "../SkillCard";
 import type { Skill } from "../SkillCard";
 import "./SkillCarousel.scss";
 
-const CAROUSEL_QUERY = "(width <= 768px)";
 const DRAG_THRESHOLD = 8;
 
 type SkillCarouselProps = {
@@ -12,6 +11,7 @@ type SkillCarouselProps = {
   activeId: string | null;
   pinnedId: string | null;
   label: string;
+  className?: string;
   onHover: (id: string) => void;
   onFocus: (id: string) => void;
   onBlur: (event: FocusEvent<HTMLButtonElement>) => void;
@@ -19,27 +19,8 @@ type SkillCarouselProps = {
   onLeave: () => void;
 };
 
-// Хук для определения соответствия медиа-запросу
-function useMatchMedia(query: string) {
-  const [matches, setMatches] = useState(
-    () => window.matchMedia(query).matches,
-  );
-
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    const onChange = () => setMatches(media.matches);
-
-    onChange();
-    media.addEventListener("change", onChange);
-
-    return () => media.removeEventListener("change", onChange);
-  }, [query]);
-
-  return matches;
-}
-
 // Хук для управления каруселем навыков
-function useSkillCarousel(enabled: boolean) {
+function useSkillCarousel() {
   const scrollerRef             = useRef<HTMLDivElement>(null);
   const suppressClickRef        = useRef(false);
   const draggingRef             = useRef(false);
@@ -48,26 +29,19 @@ function useSkillCarousel(enabled: boolean) {
   useEffect(() => {
     const scroller = scrollerRef.current;
 
-    if (!enabled || !scroller) return;
+    if (!scroller) return;
 
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let frame         = 0;
-    let glideFrame    = 0;
-    let paused        = false;
-    let gliding       = false;
-    let tracking      = false;
-    let pointerInside = false;
-    let placed        = false;
-    let wrapping      = false;
-    let resumeTimer   = 0;
-    let pointerId     = -1;
-    let startX        = 0;
-    let startY        = 0;
-    let lastX         = 0;
-    let lastT         = 0;
-    let originScroll  = 0;
-    let velocity      = 0;
-    let last          = performance.now();
+    let glideFrame = 0;
+    let gliding    = false;
+    let tracking   = false;
+    let wrapping   = false;
+    let pointerId  = -1;
+    let startX     = 0;
+    let startY     = 0;
+    let lastX      = 0;
+    let lastT      = 0;
+    let originScroll = 0;
+    let velocity   = 0;
 
     const loopWidth = () => {
       const set = scroller.firstElementChild?.firstElementChild;
@@ -85,46 +59,9 @@ function useSkillCarousel(enabled: boolean) {
       return mod < 0 ? mod + loop : mod;
     };
 
-    const place = () => {
-      if (placed) return;
-
-      const loop = loopWidth();
-
-      if (loop <= 1) return;
-
-      scroller.scrollLeft = loop / 2;
-      placed = true;
-    };
-
-    const tick = (now: number) => {
-      const delta = now - last;
-
-      last = now;
-
-      if (!paused && !gliding && !motion.matches && !document.hidden) {
-        wrapping = true;
-        scroller.scrollLeft = wrap(scroller.scrollLeft + delta * 0.04);
-        wrapping = false;
-      }
-
-      frame = window.requestAnimationFrame(tick);
-    };
-
-    const pause = () => {
-      paused = true;
+    const stopGlide = () => {
       gliding = false;
-      window.clearTimeout(resumeTimer);
       window.cancelAnimationFrame(glideFrame);
-    };
-
-    const scheduleResume = () => {
-      window.clearTimeout(resumeTimer);
-      resumeTimer = window.setTimeout(() => {
-        if (pointerInside || tracking || gliding) return;
-
-        paused = false;
-        last = performance.now();
-      }, 1400);
     };
 
     const detachPointer = () => {
@@ -152,7 +89,6 @@ function useSkillCarousel(enabled: boolean) {
         if (Math.abs(dy) > Math.abs(dx)) {
           suppressClickRef.current = true;
           stopTracking();
-          scheduleResume();
 
           return;
         }
@@ -186,11 +122,7 @@ function useSkillCarousel(enabled: boolean) {
 
       stopTracking();
 
-      if (!wasDragging || Math.abs(releaseVelocity) < 0.05) {
-        scheduleResume();
-
-        return;
-      }
+      if (!wasDragging || Math.abs(releaseVelocity) < 0.05) return;
 
       gliding = true;
       let glideLast = performance.now();
@@ -206,7 +138,6 @@ function useSkillCarousel(enabled: boolean) {
 
         if (Math.abs(glideVelocity) < 0.02) {
           gliding = false;
-          scheduleResume();
 
           return;
         }
@@ -223,7 +154,7 @@ function useSkillCarousel(enabled: boolean) {
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0 || tracking) return;
 
-      pause();
+      stopGlide();
       tracking = true;
       pointerId = event.pointerId;
       startX = lastX = event.clientX;
@@ -232,32 +163,10 @@ function useSkillCarousel(enabled: boolean) {
       lastT = performance.now();
       velocity = 0;
       suppressClickRef.current = false;
-      
+
       document.addEventListener("pointermove", onPointerMove, { passive: false });
       document.addEventListener("pointerup", onPointerUp);
       document.addEventListener("pointercancel", onPointerUp);
-    };
-
-    const onEnter = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse") return;
-
-      pointerInside = true;
-      pause();
-    };
-
-    const onLeave = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse") return;
-
-      pointerInside = false;
-
-      if (tracking || gliding) return;
-
-      scheduleResume();
-    };
-
-    const onWheel = () => {
-      pause();
-      scheduleResume();
     };
 
     const onScroll = () => {
@@ -273,31 +182,16 @@ function useSkillCarousel(enabled: boolean) {
       wrapping = false;
     };
 
-    place();
-
-    const observer = new ResizeObserver(place);
-
-    observer.observe(scroller);
-    frame = window.requestAnimationFrame(tick);
     scroller.addEventListener("pointerdown", onPointerDown);
-    scroller.addEventListener("pointerenter", onEnter);
-    scroller.addEventListener("pointerleave", onLeave);
-    scroller.addEventListener("wheel", onWheel, { passive: true });
     scroller.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      window.cancelAnimationFrame(frame);
       window.cancelAnimationFrame(glideFrame);
-      window.clearTimeout(resumeTimer);
-      observer.disconnect();
       detachPointer();
       scroller.removeEventListener("pointerdown", onPointerDown);
-      scroller.removeEventListener("pointerenter", onEnter);
-      scroller.removeEventListener("pointerleave", onLeave);
-      scroller.removeEventListener("wheel", onWheel);
       scroller.removeEventListener("scroll", onScroll);
     };
-  }, [enabled]);
+  }, []);
 
   return { scrollerRef, suppressClickRef, draggingRef, dragging };
 }
@@ -307,14 +201,14 @@ export default function SkillCarousel({
   activeId,
   pinnedId,
   label,
+  className,
   onHover,
   onFocus,
   onBlur,
   onSelect,
   onLeave,
 }: SkillCarouselProps) {
-  const enabled = useMatchMedia(CAROUSEL_QUERY);
-  const { scrollerRef, suppressClickRef, draggingRef, dragging } = useSkillCarousel(enabled);
+  const { scrollerRef, suppressClickRef, draggingRef, dragging } = useSkillCarousel();
 
   const selectSkill = (id: string) => {
     if (suppressClickRef.current) {
@@ -334,7 +228,7 @@ export default function SkillCarousel({
 
   return (
     <div
-      className={`skill-carousel${dragging ? " is-dragging" : ""}`}
+      className={`skill-carousel${className ? ` ${className}` : ""}${dragging ? " is-dragging" : ""}`}
       ref={scrollerRef}
       role="region"
       aria-label={label}

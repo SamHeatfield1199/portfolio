@@ -1,5 +1,4 @@
 .skill-carousel {
-    display: none;
     overflow: auto hidden;
     padding-block: 16px 22px;
     margin-block: -16px -22px;
@@ -37,11 +36,17 @@
     &.is-dragging .skill-card {
         cursor: grabbing;
     }
+
+    &--inline {
+        min-width: 0;
+        margin: 0;
+        padding-block: 10px 14px;
+        mask-image: linear-gradient(90deg, transparent, #000 36px, #000 calc(100% - 36px), transparent);
+    }
 }
 
 @media (width <=768px) {
     .skill-carousel {
-        display: block;
         margin-inline: -16px;
         padding-inline: 16px;
     }

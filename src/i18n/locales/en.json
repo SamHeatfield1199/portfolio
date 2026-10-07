@@ -113,7 +113,8 @@
       "ui": "UI",
       "backend": "Backend",
       "build": "Build tools",
-      "tools": "Tools"
+      "tools": "Tools",
+      "ai": "AI-assisted development"
     },
     "notes": {
       "typescript": "the language I write in at work and in side projects.",
@@ -146,7 +147,12 @@
       "swagger": "where I read and check the API contract.",
       "postman": "where I try a request before wiring it into the UI.",
       "figma": "the layouts I build from.",
-      "docker": "an environment that starts the same way for everyone."
+      "docker": "an environment that starts the same way for everyone.",
+      "codex": "an OpenAI agent for edits, refactors, and breaking a task down.",
+      "copilot": "suggestions in the editor while I write.",
+      "cursor": "the editor where I write code with an AI pair.",
+      "zai": "another model for a second pass on the task and the code.",
+      "opencode": "an open-source terminal agent for changes across the repo."
     },
     "terminal": {
       "line1": "> Always learning...",

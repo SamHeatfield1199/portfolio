@@ -59,6 +59,27 @@
         }
     }
 
+    &__body {
+        position: relative;
+        min-width: 0;
+
+        &.is-engaged .skill-card:not(.is-active),
+        &:hover .skill-card:not(:hover, .is-active) {
+            opacity: 0.45;
+        }
+    }
+
+    &__fit {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: clamp(8px, 0.8vw, 12px);
+        overflow: hidden;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
     &__group-index {
         margin: 0 0 4px;
         font-family: $font-primary;
@@ -77,11 +98,6 @@
         display: flex;
         flex-wrap: wrap;
         gap: clamp(8px, 0.8vw, 12px);
-
-        &:hover .skill-card:not(:hover):not(.is-active),
-        &.is-engaged .skill-card:not(.is-active) {
-            opacity: 0.45;
-        }
     }
 
     &__learning {
@@ -285,10 +301,6 @@
 
         &__header {
             margin-bottom: 36px;
-        }
-
-        &__groups {
-            display: none;
         }
 
         &__terminal {

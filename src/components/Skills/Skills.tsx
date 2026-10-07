@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { FocusEvent } from "react";
 import { useTranslation } from "react-i18next";
 import "./Skills.scss";
-import { CHARACTER_SRC } from "@/assets/character";
 import Stack from "@/assets/icons/Stack.svg";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import SkillCard from "./SkillCard";
 import type { Skill } from "./SkillCard";
 import SkillCarousel from "./SkillCarousel/SkillCarousel";
+import SkillTerminal from "./SkillTerminal";
+
+const COMPACT_SKILLS_QUERY = "(width <= 768px)";
 
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
+const LOBE = "https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons";
 
 type SkillGroup = {
-  id: "frontend" | "frameworks" | "state" | "ui" | "backend" | "build" | "tools";
+  id: "frontend" | "frameworks" | "state" | "ui" | "backend" | "build" | "tools" | "ai";
   wide?: boolean;
   skills: Skill[];
 };
@@ -55,13 +59,22 @@ const skillGroupData: SkillGroup[] = [
   },
   {
     id: "backend",
-    wide: true,
     skills: [
       { id: "php", name: "PHP", icon: `${DEVICON}/php/php-original.svg` },
       { id: "yii2", name: "Yii2", icon: "https://cdn.simpleicons.org/yii/40B3D8" },
       { id: "restApi", name: "REST API", badge: "API" },
       { id: "kafka", name: "Kafka", icon: `${DEVICON}/apachekafka/apachekafka-original.svg` },
       { id: "postgresql", name: "PostgreSQL", icon: `${DEVICON}/postgresql/postgresql-original.svg` },
+    ],
+  },
+  {
+    id: "ai",
+    skills: [
+      { id: "codex", name: "Codex", icon: `${LOBE}/openai.svg` },
+      { id: "copilot", name: "Copilot", icon: `${LOBE}/githubcopilot.svg` },
+      { id: "cursor", name: "Cursor", icon: `${LOBE}/cursor.svg` },
+      { id: "zai", name: "Z.ai", icon: `${LOBE}/zai.svg` },
+      { id: "opencode", name: "OpenCode", icon: `${LOBE}/opencode.svg` },
     ],
   },
   {
@@ -95,54 +108,124 @@ function pointerCanHover() {
   return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 }
 
-// Хук для анимации текста
-function useTypewriter(text: string | null) {
-  const [output, setOutput] = useState("");
-
-  useEffect(() => {
-    if (!text) {
-      setOutput("");
-
-      return;
-    }
-
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (motion.matches) {
-      setOutput(text);
-
-      return;
-    }
-
-    setOutput("");
-    let index = 0;
-
-    const timer = window.setInterval(() => {
-      index += 1;
-      setOutput(text.slice(0, index));
-
-      if (index >= text.length) window.clearInterval(timer);
-    }, 18);
-
-    return () => window.clearInterval(timer);
-  }, [text]);
-
-  return output;
-}
-
 const allSkills = skillGroupData.flatMap((group) => group.skills);
 
+type SkillGroupBodyProps = {
+  skills: Skill[];
+  activeId: string | null;
+  pinnedId: string | null;
+  label: string;
+  engaged: boolean;
+  onHover: (id: string) => void;
+  onFocus: (id: string) => void;
+  onBlur: (event: FocusEvent<HTMLButtonElement>) => void;
+  onToggle: (id: string) => void;
+  onCarouselSelect: (id: string) => void;
+  onLeave: () => void;
+};
+
+// Если карточки не помещаются в один ряд, группа становится каруселью.
+function SkillGroupBody({
+  skills,
+  activeId,
+  pinnedId,
+  label,
+  engaged,
+  onHover,
+  onFocus,
+  onBlur,
+  onToggle,
+  onCarouselSelect,
+  onLeave,
+}: SkillGroupBodyProps) {
+  const fitRef                  = useRef<HTMLDivElement>(null);
+  const [overflow, setOverflow] = useState(false);
+
+  useLayoutEffect(() => {
+    const fit = fitRef.current;
+
+    if (!fit) return;
+
+    const check = () => {
+      if (fit.clientWidth <= 0) return;
+
+      setOverflow(fit.scrollWidth - fit.clientWidth > 1);
+    };
+
+    check();
+
+    const observer = new ResizeObserver(check);
+
+    observer.observe(fit);
+
+    for (const child of fit.children) observer.observe(child);
+
+    return () => observer.disconnect();
+  }, [skills]);
+
+  return (
+    <div className={`skills__body${engaged ? " is-engaged" : ""}`}>
+      <div className="skills__fit" ref={fitRef} aria-hidden="true">
+        {skills.map((skill) => (
+          <SkillCard
+            key={skill.id}
+            {...skill}
+            active={false}
+            pinned={false}
+            tabIndex={-1}
+            onHover={() => undefined}
+            onFocus={() => undefined}
+            onBlur={() => undefined}
+            onToggle={() => undefined}
+          />
+        ))}
+      </div>
+      {overflow ? (
+        <SkillCarousel
+          className="skill-carousel--inline"
+          skills={skills}
+          activeId={activeId}
+          pinnedId={pinnedId}
+          label={label}
+          onHover={onHover}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onSelect={onCarouselSelect}
+          onLeave={onLeave}
+        />
+      ) : (
+        <div className="skills__track" onMouseLeave={onLeave}>
+          {skills.map((skill) => (
+            <SkillCard
+              key={skill.id}
+              {...skill}
+              active={skill.id === activeId}
+              pinned={skill.id === pinnedId}
+              onHover={onHover}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              onToggle={onToggle}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Основной компонент Skills
 export default function Skills() {
   const { t } = useTranslation();
+  const isCompact = useMediaQuery(COMPACT_SKILLS_QUERY);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [pinnedId, setPinnedId] = useState<string | null>(null);
 
   const activeId    = pinnedId ?? focusedId ?? hoveredId;
   const activeSkill = activeId ? skillsById.get(activeId) ?? null : null;
-  const prompt      = activeSkill
+  const prompt = activeSkill
     ? `> ${activeSkill.name.toLowerCase()} — ${t(`skills.notes.${activeSkill.id}`)}`
     : null;
-  const typedPrompt = useTypewriter(prompt);
 
   useEffect(() => {
     if (!pinnedId) return;
@@ -195,8 +278,6 @@ export default function Skills() {
     setPinnedId((current) => (current === id ? null : id));
   };
 
-  const idleLine = `${t("skills.terminal.line1")} ${t("skills.terminal.line2")}`;
-
   return (
     <section className="skills" id="skills">
       <header className="skills__header">
@@ -207,67 +288,53 @@ export default function Skills() {
         </div>
       </header>
 
-      <div className="skills__groups">
-        {skillGroupData.map((group) => {
-          const engaged = group.skills.some((skill) => skill.id === activeId);
+      {isCompact ? (
+        <SkillCarousel
+          skills={allSkills}
+          activeId={activeId}
+          pinnedId={pinnedId}
+          label={t("skills.heading")}
+          onHover={onHover}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onSelect={onCarouselSelect}
+          onLeave={() => setHoveredId(null)}
+        />
+      ) : (
+        <div className="skills__groups">
+          {skillGroupData.map((group) => {
+            const engaged = group.skills.some((skill) => skill.id === activeId);
 
-          return (
-            <div
-              key={group.id}
-              className={`skills__group${group.wide ? " skills__group--wide" : ""}`}
-            >
-              <h3 className="skills__group-title">{t(`skills.groups.${group.id}`)}</h3>
+            return (
               <div
-                className={`skills__track${engaged ? " is-engaged" : ""}`}
-                onMouseLeave={() => setHoveredId(null)}
+                key={group.id}
+                className={`skills__group${group.wide ? " skills__group--wide" : ""}`}
               >
-                {group.skills.map((skill) => (
-                  <SkillCard
-                    key={skill.id}
-                    {...skill}
-                    active={skill.id === activeId}
-                    pinned={skill.id === pinnedId}
-                    onHover={onHover}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    onToggle={onToggle}
-                  />
-                ))}
+                <h3 className="skills__group-title">{t(`skills.groups.${group.id}`)}</h3>
+                <SkillGroupBody
+                  skills={group.skills}
+                  activeId={activeId}
+                  pinnedId={pinnedId}
+                  label={t(`skills.groups.${group.id}`)}
+                  engaged={engaged}
+                  onHover={onHover}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onToggle={onToggle}
+                  onCarouselSelect={onCarouselSelect}
+                  onLeave={() => setHoveredId(null)}
+                />
               </div>
-            </div>
-          );
-        })}
-      </div>
-
-      <SkillCarousel
-        skills={allSkills}
-        activeId={activeId}
-        pinnedId={pinnedId}
-        label={t("skills.heading")}
-        onHover={onHover}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onSelect={onCarouselSelect}
-        onLeave={() => setHoveredId(null)}
-      />
-
-      <div className="skills__learning">
-        <div className="skills__terminal">
-          {prompt ? (
-            <p>{typedPrompt}</p>
-          ) : (
-            <>
-              <p>{t("skills.terminal.line1")}</p>
-              <p>{t("skills.terminal.line2")}</p>
-            </>
-          )}
-          <p className="skills__terminal-live" aria-live="polite">
-            {prompt ?? idleLine}
-          </p>
-          <span className="skills__terminal-cursor" aria-hidden="true">_</span>
-          <img className="skills__V" src={CHARACTER_SRC} alt="" />
+            );
+          })}
         </div>
-      </div>
+      )}
+
+      <SkillTerminal
+        prompt={prompt}
+        line1={t("skills.terminal.line1")}
+        line2={t("skills.terminal.line2")}
+      />
     </section>
   );
 }
